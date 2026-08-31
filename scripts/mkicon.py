@@ -2,7 +2,7 @@
 """
 Regenerate the launcher icon at resources/images/menu_icon.png.
 
-A 25x25 (the Pebble menu-icon maximum) white-on-transparent clock face:
+A 25x25 (the Pebble menu-icon maximum) black-on-transparent clock face:
 circular rim, 12/3/6/9 ticks, minute hand up, hour hand toward 4.
 
     pip install pillow
@@ -50,7 +50,7 @@ d.ellipse([cx - N * 0.045, cy - N * 0.045, cx + N * 0.045, cy + N * 0.045], fill
 
 small = img.resize((S, S), Image.LANCZOS)
 mask = small.point(lambda p: 255 if p >= 100 else 0)
-out = Image.composite(Image.new("RGBA", (S, S), (255, 255, 255, 255)),
+out = Image.composite(Image.new("RGBA", (S, S), (0, 0, 0, 255)),
                       Image.new("RGBA", (S, S), (0, 0, 0, 0)), mask)
 out.save(OUT)
 print("wrote", OUT)

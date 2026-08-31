@@ -88,5 +88,8 @@ bool hc_chime_play(const HcSettings *s, int hour24, bool force) {
 
   const int strikes = hc_strike_count(s, hour24);
   hc_do_vibe(s, strikes);
-  return hc_play_sound(s, strikes);
+  bool sound = hc_play_sound(s, strikes);
+  APP_LOG(APP_LOG_LEVEL_INFO, "chime: hour=%d style=%d strikes=%d vibe=%d sound=%d muted=%d",
+          hour24, s->style, strikes, s->vibe, sound, speaker_is_muted());
+  return sound;
 }
