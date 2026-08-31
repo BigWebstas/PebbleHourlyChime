@@ -1,0 +1,38 @@
+{
+  "name": "hourly-chime",
+  "author": "BW",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Hourly Chime",
+    "uuid": "9874a263-491c-46f5-9b24-f05bf91f3c18",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery",
+      "flint"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "capabilities": [
+      "configurable"
+    ],
+    "messageKeys": [
+      "CFG_ENABLED",
+      "CFG_MODE",
+      "CFG_SOUND",
+      "CFG_VIBE",
+      "CFG_VOLUME",
+      "CFG_START_HOUR",
+      "CFG_END_HOUR",
+      "CFG_STYLE",
+      "CFG_STRIKE_COUNT"
+    ],
+    "resources": {
+      "media": []
+    }
+  }
+}
