@@ -59,19 +59,24 @@ function buildPage(cfg) {
 
   return '<!DOCTYPE html><html><head><meta charset="utf-8">' +
     '<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">' +
+    '<meta name="color-scheme" content="light dark">' +
     '<title>Hourly Chime</title><style>' +
-    'body{font-family:-apple-system,Roboto,Helvetica,sans-serif;margin:0;background:#1c1c1e;color:#f2f2f7}' +
+    ':root{--bg:#efeff4;--grp:#fff;--border:#d1d1d6;--fg:#1c1c1e;--hint:#6c6c70;' +
+    '--field-bg:#e9e9eb;--field-fg:#1c1c1e;--accent:#007aff}' +
+    '@media (prefers-color-scheme:dark){:root{--bg:#1c1c1e;--grp:#2c2c2e;--border:#3a3a3c;' +
+    '--fg:#f2f2f7;--hint:#8e8e93;--field-bg:#3a3a3c;--field-fg:#fff;--accent:#0a84ff}}' +
+    'body{font-family:-apple-system,Roboto,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg)}' +
     'h1{font-size:19px;font-weight:600;padding:18px 16px 4px}' +
-    '.grp{background:#2c2c2e;margin:12px 0;border-top:1px solid #3a3a3c;border-bottom:1px solid #3a3a3c}' +
-    '.row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #3a3a3c}' +
+    '.grp{background:var(--grp);margin:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}' +
+    '.row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border)}' +
     '.row:last-child{border-bottom:0}' +
     '.row label{flex:1;font-size:16px}' +
     'select,input[type=range]{font-size:16px}' +
-    'select{background:#3a3a3c;color:#fff;border:0;border-radius:8px;padding:6px 8px}' +
+    'select{background:var(--field-bg);color:var(--field-fg);border:0;border-radius:8px;padding:6px 8px}' +
     'input[type=checkbox]{width:22px;height:22px}' +
-    '.hint{font-size:12px;color:#8e8e93;padding:6px 16px 14px}' +
+    '.hint{font-size:12px;color:var(--hint);padding:6px 16px 14px}' +
     'button{width:calc(100% - 32px);margin:20px 16px 40px;padding:14px;font-size:17px;font-weight:600;' +
-    'border:0;border-radius:12px;background:#0a84ff;color:#fff}' +
+    'border:0;border-radius:12px;background:var(--accent);color:#fff}' +
     '#vol{width:150px}' +
     '</style></head><body>' +
 
