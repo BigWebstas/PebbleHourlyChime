@@ -39,21 +39,21 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
     case HC_STYLE_WESTMINSTER: {
       /* First phrase of the Westminster Quarters (change ring). */
       static const SpeakerNote notes[] = {
-        { 68, SpeakerWaveformSine, 380, 0, 0 },  /* G#4 */
-        { 66, SpeakerWaveformSine, 380, 0, 0 },  /* F#4 */
-        { 64, SpeakerWaveformSine, 380, 0, 0 },  /* E4  */
-        { 59, SpeakerWaveformSine, 720, 0, 0 },  /* B3  */
+        { 92, SpeakerWaveformSine, 380, 0, 0 },  /* G#6 */
+        { 90, SpeakerWaveformSine, 380, 0, 0 },  /* F#6 */
+        { 88, SpeakerWaveformSine, 380, 0, 0 },  /* E6  */
+        { 83, SpeakerWaveformSine, 720, 0, 0 },  /* B5  */
       };
       return speaker_play_notes(notes, 4, vol);
     }
 
     case HC_STYLE_CUCKOO: {
       static const SpeakerNote notes[] = {
-        { 72, SpeakerWaveformTriangle, 220, 0, 0 },  /* C5 */
-        { 67, SpeakerWaveformTriangle, 340, 0, 0 },  /* G4 */
+        { 96, SpeakerWaveformTriangle, 220, 0, 0 },  /* C7 */
+        { 91, SpeakerWaveformTriangle, 340, 0, 0 },  /* G6 */
         {  0, SpeakerWaveformSine,     140, 0, 0 },  /* rest */
-        { 72, SpeakerWaveformTriangle, 220, 0, 0 },
-        { 67, SpeakerWaveformTriangle, 340, 0, 0 },
+        { 96, SpeakerWaveformTriangle, 220, 0, 0 },
+        { 91, SpeakerWaveformTriangle, 340, 0, 0 },
       };
       return speaker_play_notes(notes, 5, vol);
     }
@@ -62,7 +62,7 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
       static SpeakerNote notes[24];
       uint32_t n = 0;
       for (int i = 0; i < strikes && i < 12; i++) {
-        notes[n++] = (SpeakerNote){ 55, SpeakerWaveformSine, 280, 0, 0 };  /* G3 */
+        notes[n++] = (SpeakerNote){ 79, SpeakerWaveformSine, 280, 0, 0 };  /* G5 */
         if (i != strikes - 1) {
           notes[n++] = (SpeakerNote){ 0, SpeakerWaveformSine, 260, 0, 0 };
         }
@@ -75,7 +75,7 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
 
     case HC_STYLE_BEEP:
     default:
-      return speaker_play_tone(880, 180, vol, SpeakerWaveformSine);
+      return speaker_play_tone(3520, 180, vol, SpeakerWaveformSine);
   }
 }
 
