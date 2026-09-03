@@ -27,6 +27,8 @@ typedef enum {
   HC_STYLE_WESTMINSTER = 1,
   HC_STYLE_CUCKOO      = 2,
   HC_STYLE_STRIKE      = 3,  /* N strikes, N = strike_count or the 12h hour. */
+  HC_STYLE_MARIO       = 4,  /* Opening phrase of the Super Mario Bros theme. */
+  HC_STYLE_STARWARS    = 5,  /* Opening bars of the Star Wars main title. */
   HC_STYLE_COUNT
 } HcStyle;
 

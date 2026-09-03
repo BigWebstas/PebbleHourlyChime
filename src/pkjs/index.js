@@ -14,7 +14,7 @@ var DEFAULTS = {
   CFG_VOLUME: 70,
   CFG_START_HOUR: 8,
   CFG_END_HOUR: 22,
-  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike
+  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars
   CFG_STRIKE_COUNT: 0   // 0 = strike the current hour
 };
 
@@ -112,6 +112,8 @@ function buildPage(cfg) {
           '<option value="1"' + sel(cfg.CFG_STYLE, 1) + '>Westminster</option>' +
           '<option value="2"' + sel(cfg.CFG_STYLE, 2) + '>Cuckoo</option>' +
           '<option value="3"' + sel(cfg.CFG_STYLE, 3) + '>Hour strikes</option>' +
+          '<option value="4"' + sel(cfg.CFG_STYLE, 4) + '>Mario</option>' +
+          '<option value="5"' + sel(cfg.CFG_STYLE, 5) + '>Star Wars</option>' +
         '</select></div>' +
       '<div class="row"><label for="strike">Strike count</label>' +
         '<select id="strike">' +

@@ -18,8 +18,9 @@ launching the app to chime once and exit. Two backends, chosen on the config pag
 
 ## Chime styles
 
-Single beep, Westminster (first phrase of the Quarters), Cuckoo, and Hour strikes
-(a fixed count, or the current 12-hour hour).
+Single beep, Westminster (first phrase of the Quarters), Cuckoo, Hour strikes
+(a fixed count, or the current 12-hour hour), Mario (opening phrase of the
+Super Mario Bros. theme), and Star Wars (opening bars of the main title).
 
 ## Settings
 

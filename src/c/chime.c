@@ -73,6 +73,49 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
       return speaker_play_notes(notes, n, vol);
     }
 
+    case HC_STYLE_MARIO: {
+      /* Opening phrase of the Super Mario Bros. overworld theme. */
+      static const SpeakerNote notes[] = {
+        { 76, SpeakerWaveformSquare, 125, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,   125, 0, 0 },
+        { 76, SpeakerWaveformSquare, 125, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,   125, 0, 0 },
+        { 76, SpeakerWaveformSquare, 125, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,   125, 0, 0 },
+        { 72, SpeakerWaveformSquare, 125, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSquare, 125, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,   125, 0, 0 },
+        { 79, SpeakerWaveformSquare, 250, 0, 0 },  /* G5 */
+        {  0, SpeakerWaveformSine,   250, 0, 0 },
+        { 67, SpeakerWaveformSquare, 250, 0, 0 },  /* G4 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_STARWARS: {
+      /* Opening bars of the Star Wars main title. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 160, 0, 0 },  /* G4 triplet */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 160, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 160, 0, 0 },  /* G4 */
+        { 72, SpeakerWaveformSquare, 520, 0, 0 },  /* C5 */
+        { 79, SpeakerWaveformSquare, 520, 0, 0 },  /* G5 */
+        { 77, SpeakerWaveformSquare, 130, 0, 0 },  /* F5 */
+        { 76, SpeakerWaveformSquare, 130, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare, 130, 0, 0 },  /* D5 */
+        { 84, SpeakerWaveformSquare, 520, 0, 0 },  /* C6 */
+        { 79, SpeakerWaveformSquare, 300, 0, 0 },  /* G5 */
+        { 77, SpeakerWaveformSquare, 130, 0, 0 },  /* F5 */
+        { 76, SpeakerWaveformSquare, 130, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare, 130, 0, 0 },  /* D5 */
+        { 84, SpeakerWaveformSquare, 520, 0, 0 },  /* C6 */
+        { 79, SpeakerWaveformSquare, 520, 0, 0 },  /* G5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
     case HC_STYLE_BEEP:
     default:
       return speaker_play_tone(3520, 180, vol, SpeakerWaveformSine);
