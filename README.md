@@ -20,7 +20,10 @@ launching the app to chime once and exit. Two backends, chosen on the config pag
 
 Single beep, Westminster (first phrase of the Quarters), Cuckoo, Hour strikes
 (a fixed count, or the current 12-hour hour), Mario (opening phrase of the
-Super Mario Bros. theme), and Star Wars (opening bars of the main title).
+Super Mario Bros. theme), Star Wars (opening bars of the main title), SpongeBob
+("Who lives in a pineapple under the sea?"), X-Files (the theme's whistle hook),
+Batman (the 1960s TV theme riff), Casio beep (the F-91W hourly signal), and
+Nokia tune (the "Gran Vals" phrase).
 
 ## Settings
 

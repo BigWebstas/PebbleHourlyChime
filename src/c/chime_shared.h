@@ -29,6 +29,11 @@ typedef enum {
   HC_STYLE_STRIKE      = 3,  /* N strikes, N = strike_count or the 12h hour. */
   HC_STYLE_MARIO       = 4,  /* Opening phrase of the Super Mario Bros theme. */
   HC_STYLE_STARWARS    = 5,  /* Opening bars of the Star Wars main title. */
+  HC_STYLE_SPONGEBOB   = 6,  /* "Who lives in a pineapple under the sea?" */
+  HC_STYLE_XFILES      = 7,  /* The X-Files main theme whistle hook. */
+  HC_STYLE_BATMAN      = 8,  /* Neal Hefti's 1960s Batman TV theme riff. */
+  HC_STYLE_CASIO       = 9,  /* Casio F-91W hourly signal: two short beeps. */
+  HC_STYLE_NOKIA       = 10, /* Nokia tune: the "Gran Vals" phrase. */
   HC_STYLE_COUNT
 } HcStyle;
 

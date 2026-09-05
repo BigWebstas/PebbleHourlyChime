@@ -116,6 +116,100 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }
 
+    case HC_STYLE_SPONGEBOB: {
+      /* "Who lives in a pineapple under the sea?" */
+      static const SpeakerNote notes[] = {
+        { 72, SpeakerWaveformTriangle, 190, 0, 0 },  /* C5  Who   */
+        { 72, SpeakerWaveformTriangle, 190, 0, 0 },  /* C5  lives */
+        { 72, SpeakerWaveformTriangle, 190, 0, 0 },  /* C5  in a  */
+        { 77, SpeakerWaveformTriangle, 190, 0, 0 },  /* F5  pine  */
+        { 77, SpeakerWaveformTriangle, 190, 0, 0 },  /* F5  ap    */
+        { 77, SpeakerWaveformTriangle, 190, 0, 0 },  /* F5  ple   */
+        { 81, SpeakerWaveformTriangle, 190, 0, 0 },  /* A5  un    */
+        { 81, SpeakerWaveformTriangle, 190, 0, 0 },  /* A5  der   */
+        { 81, SpeakerWaveformTriangle, 190, 0, 0 },  /* A5  the   */
+        { 79, SpeakerWaveformTriangle, 240, 0, 0 },  /* G5  sea   */
+        {  0, SpeakerWaveformSine,      90, 0, 0 },
+        { 84, SpeakerWaveformTriangle, 420, 0, 0 },  /* C6  !     */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_XFILES: {
+      /* The X-Files main theme — the whistled hook (A minor): the rising
+       * A-C-E-F figure, then the three repeated high A's. */
+      static const SpeakerNote notes[] = {
+        { 69, SpeakerWaveformSine, 130, 0, 0 },  /* A4 */
+        { 72, SpeakerWaveformSine, 130, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSine, 130, 0, 0 },  /* E5 */
+        { 77, SpeakerWaveformSine, 380, 0, 0 },  /* F5 */
+        {  0, SpeakerWaveformSine, 120, 0, 0 },
+        { 72, SpeakerWaveformSine, 130, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSine, 130, 0, 0 },  /* E5 */
+        { 77, SpeakerWaveformSine, 380, 0, 0 },  /* F5 */
+        {  0, SpeakerWaveformSine, 160, 0, 0 },
+        { 81, SpeakerWaveformSine, 300, 0, 0 },  /* A5 */
+        {  0, SpeakerWaveformSine,  90, 0, 0 },
+        { 81, SpeakerWaveformSine, 300, 0, 0 },  /* A5 */
+        {  0, SpeakerWaveformSine,  90, 0, 0 },
+        { 81, SpeakerWaveformSine, 540, 0, 0 },  /* A5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_BATMAN: {
+      /* Neal Hefti's 1960s Batman TV theme: the riff twice, then "Batman!". */
+      static const SpeakerNote notes[] = {
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
+        { 75, SpeakerWaveformSquare, 110, 0, 0 },  /* D#5 na */
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  na */
+        { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5  na */
+        {  0, SpeakerWaveformSine,    70, 0, 0 },
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
+        { 75, SpeakerWaveformSquare, 110, 0, 0 },  /* D#5 na */
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  na */
+        { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5  na */
+        {  0, SpeakerWaveformSine,   130, 0, 0 },
+        { 79, SpeakerWaveformSquare, 200, 0, 0 },  /* G5  Bat */
+        { 76, SpeakerWaveformSquare, 500, 0, 0 },  /* E5  man! */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_CASIO: {
+      /* The Casio F-91W hourly signal: two short high beeps. */
+      static const SpeakerNote notes[] = {
+        { 96, SpeakerWaveformSquare, 70, 0, 0 },  /* C7 */
+        {  0, SpeakerWaveformSine,   70, 0, 0 },
+        { 96, SpeakerWaveformSquare, 70, 0, 0 },  /* C7 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_NOKIA: {
+      /* Nokia tune — the "Gran Vals" phrase (Tarrega), square wave. */
+      static const SpeakerNote notes[] = {
+        { 76, SpeakerWaveformSquare, 140, 0, 0 },  /* E5  */
+        { 74, SpeakerWaveformSquare, 140, 0, 0 },  /* D5  */
+        { 66, SpeakerWaveformSquare, 280, 0, 0 },  /* F#4 */
+        { 68, SpeakerWaveformSquare, 280, 0, 0 },  /* G#4 */
+        { 73, SpeakerWaveformSquare, 140, 0, 0 },  /* C#5 */
+        { 71, SpeakerWaveformSquare, 140, 0, 0 },  /* B4  */
+        { 62, SpeakerWaveformSquare, 280, 0, 0 },  /* D4  */
+        { 64, SpeakerWaveformSquare, 280, 0, 0 },  /* E4  */
+        { 71, SpeakerWaveformSquare, 140, 0, 0 },  /* B4  */
+        { 69, SpeakerWaveformSquare, 140, 0, 0 },  /* A4  */
+        { 61, SpeakerWaveformSquare, 280, 0, 0 },  /* C#4 */
+        { 64, SpeakerWaveformSquare, 280, 0, 0 },  /* E4  */
+        { 69, SpeakerWaveformSquare, 560, 0, 0 },  /* A4  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
     case HC_STYLE_BEEP:
     default:
       return speaker_play_tone(3520, 180, vol, SpeakerWaveformSine);
