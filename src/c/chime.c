@@ -158,24 +158,31 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
     }
 
     case HC_STYLE_BATMAN: {
-      /* Neal Hefti's 1960s Batman TV theme: the riff twice, then "Batman!". */
+      /* Neal Hefti's 1966 Batman TV theme: the chromatic surf riff twice,
+       * then the sung "Batman!" (flat third down to the tonic). */
       static const SpeakerNote notes[] = {
-        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
-        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
-        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
-        { 75, SpeakerWaveformSquare, 110, 0, 0 },  /* D#5 na */
-        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  na */
-        { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5  na */
-        {  0, SpeakerWaveformSine,    70, 0, 0 },
-        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
-        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
-        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  na */
-        { 75, SpeakerWaveformSquare, 110, 0, 0 },  /* D#5 na */
-        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  na */
-        { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5  na */
-        {  0, SpeakerWaveformSine,   130, 0, 0 },
-        { 79, SpeakerWaveformSquare, 200, 0, 0 },  /* G5  Bat */
-        { 76, SpeakerWaveformSquare, 500, 0, 0 },  /* E5  man! */
+        { 72, SpeakerWaveformSquare,  90, 0, 0 },  /* C5  */
+        { 73, SpeakerWaveformSquare,  90, 0, 0 },  /* C#5 */
+        { 74, SpeakerWaveformSquare,  90, 0, 0 },  /* D5  */
+        { 75, SpeakerWaveformSquare,  90, 0, 0 },  /* D#5 */
+        { 76, SpeakerWaveformSquare, 150, 0, 0 },  /* E5  */
+        { 75, SpeakerWaveformSquare,  90, 0, 0 },  /* D#5 */
+        { 74, SpeakerWaveformSquare,  90, 0, 0 },  /* D5  */
+        { 73, SpeakerWaveformSquare,  90, 0, 0 },  /* C#5 */
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,   120, 0, 0 },
+        { 72, SpeakerWaveformSquare,  90, 0, 0 },  /* C5  */
+        { 73, SpeakerWaveformSquare,  90, 0, 0 },  /* C#5 */
+        { 74, SpeakerWaveformSquare,  90, 0, 0 },  /* D5  */
+        { 75, SpeakerWaveformSquare,  90, 0, 0 },  /* D#5 */
+        { 76, SpeakerWaveformSquare, 150, 0, 0 },  /* E5  */
+        { 75, SpeakerWaveformSquare,  90, 0, 0 },  /* D#5 */
+        { 74, SpeakerWaveformSquare,  90, 0, 0 },  /* D5  */
+        { 73, SpeakerWaveformSquare,  90, 0, 0 },  /* C#5 */
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,   160, 0, 0 },
+        { 75, SpeakerWaveformSquare, 240, 0, 0 },  /* D#5  Bat- */
+        { 72, SpeakerWaveformSquare, 560, 0, 0 },  /* C5   -man! */
       };
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }
@@ -206,6 +213,34 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
         { 61, SpeakerWaveformSquare, 280, 0, 0 },  /* C#4 */
         { 64, SpeakerWaveformSquare, 280, 0, 0 },  /* E4  */
         { 69, SpeakerWaveformSquare, 560, 0, 0 },  /* A4  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_TETRIS: {
+      /* Korobeiniki — the Tetris (Type A) theme, opening phrase. */
+      static const SpeakerNote notes[] = {
+        { 76, SpeakerWaveformSquare, 280, 0, 0 },  /* E5 */
+        { 71, SpeakerWaveformSquare, 140, 0, 0 },  /* B4 */
+        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
+        { 74, SpeakerWaveformSquare, 280, 0, 0 },  /* D5 */
+        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
+        { 71, SpeakerWaveformSquare, 140, 0, 0 },  /* B4 */
+        { 69, SpeakerWaveformSquare, 280, 0, 0 },  /* A4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 69, SpeakerWaveformSquare, 140, 0, 0 },  /* A4 */
+        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSquare, 280, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare, 140, 0, 0 },  /* D5 */
+        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
+        { 71, SpeakerWaveformSquare, 420, 0, 0 },  /* B4 */
+        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
+        { 74, SpeakerWaveformSquare, 280, 0, 0 },  /* D5 */
+        { 76, SpeakerWaveformSquare, 280, 0, 0 },  /* E5 */
+        { 72, SpeakerWaveformSquare, 280, 0, 0 },  /* C5 */
+        { 69, SpeakerWaveformSquare, 280, 0, 0 },  /* A4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 69, SpeakerWaveformSquare, 420, 0, 0 },  /* A4 */
       };
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }

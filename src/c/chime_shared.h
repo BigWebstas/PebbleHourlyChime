@@ -34,6 +34,7 @@ typedef enum {
   HC_STYLE_BATMAN      = 8,  /* Neal Hefti's 1960s Batman TV theme riff. */
   HC_STYLE_CASIO       = 9,  /* Casio F-91W hourly signal: two short beeps. */
   HC_STYLE_NOKIA       = 10, /* Nokia tune: the "Gran Vals" phrase. */
+  HC_STYLE_TETRIS      = 11, /* Korobeiniki: the Tetris Type A theme. */
   HC_STYLE_COUNT
 } HcStyle;
 

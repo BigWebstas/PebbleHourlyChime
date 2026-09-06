@@ -22,8 +22,8 @@ Single beep, Westminster (first phrase of the Quarters), Cuckoo, Hour strikes
 (a fixed count, or the current 12-hour hour), Mario (opening phrase of the
 Super Mario Bros. theme), Star Wars (opening bars of the main title), SpongeBob
 ("Who lives in a pineapple under the sea?"), X-Files (the theme's whistle hook),
-Batman (the 1960s TV theme riff), Casio beep (the F-91W hourly signal), and
-Nokia tune (the "Gran Vals" phrase).
+Batman (the 1960s TV theme riff), Casio beep (the F-91W hourly signal),
+Nokia tune (the "Gran Vals" phrase), and Tetris (Korobeiniki).
 
 ## Settings
 
