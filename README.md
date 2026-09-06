@@ -28,8 +28,10 @@ Nokia tune (the "Gran Vals" phrase), and Tetris (Korobeiniki).
 ## Settings
 
 From the Pebble phone app (**Settings → Hourly Chime**): enabled, trigger mode,
-speaker/vibration/volume, sound style, and an active window (`start`–`end` hour,
-inclusive; set start > end to span midnight).
+speaker/vibration/volume, sound style, which days to chime (every day, weekdays
+only, or weekends only), and an active window (`start`–`end` hour, inclusive; set
+start > end to span midnight). A window that crosses midnight is judged by the
+calendar day each chime falls on.
 
 In-app: **Select** toggles enabled, **long-press Select** plays a test chime.
 

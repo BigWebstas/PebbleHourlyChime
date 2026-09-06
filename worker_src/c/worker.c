@@ -25,7 +25,7 @@ static void prv_tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   if (!s.enabled || s.mode != HC_MODE_WORKER) {
     return;
   }
-  if (!hc_is_active_hour(&s, tick_time->tm_hour)) {
+  if (!hc_is_active_time(&s, tick_time->tm_hour, tick_time->tm_wday)) {
     return;
   }
 

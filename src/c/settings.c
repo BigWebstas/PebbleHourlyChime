@@ -42,6 +42,8 @@ bool hc_settings_apply_inbox(DictionaryIterator *iter) {
   if (HC_GET(CFG_STYLE))        { s_settings.style        = clamp_u8(t->value->int32, 0,
                                                                     HC_STYLE_COUNT - 1);             changed = true; }
   if (HC_GET(CFG_STRIKE_COUNT)) { s_settings.strike_count = clamp_u8(t->value->int32, 0, 12);         changed = true; }
+  if (HC_GET(CFG_DAYS))        { s_settings.days         = clamp_u8(t->value->int32, 0,
+                                                                    HC_DAYS_WEEKENDS);               changed = true; }
 
 #undef HC_GET
 

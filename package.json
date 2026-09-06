@@ -29,7 +29,8 @@
       "CFG_START_HOUR",
       "CFG_END_HOUR",
       "CFG_STYLE",
-      "CFG_STRIKE_COUNT"
+      "CFG_STRIKE_COUNT",
+      "CFG_DAYS"
     ],
     "resources": {
       "media": [

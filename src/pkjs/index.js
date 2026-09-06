@@ -15,7 +15,8 @@ var DEFAULTS = {
   CFG_START_HOUR: 8,
   CFG_END_HOUR: 22,
   CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris
-  CFG_STRIKE_COUNT: 0   // 0 = strike the current hour
+  CFG_STRIKE_COUNT: 0,  // 0 = strike the current hour
+  CFG_DAYS: 0           // 0 = every day, 1 = weekdays only, 2 = weekends only
 };
 
 function loadConfig() {
@@ -136,13 +137,20 @@ function buildPage(cfg) {
     '<div class="hint">Strike count applies to the “Hour strikes” sound and its matching vibration.</div>' +
 
     '<div class="grp">' +
+      '<div class="row"><label for="days">Days active</label>' +
+        '<select id="days">' +
+          '<option value="0"' + sel(cfg.CFG_DAYS, 0) + '>Every day</option>' +
+          '<option value="1"' + sel(cfg.CFG_DAYS, 1) + '>Weekdays only (Mon–Fri)</option>' +
+          '<option value="2"' + sel(cfg.CFG_DAYS, 2) + '>Weekends only (Sat–Sun)</option>' +
+        '</select></div>' +
       '<div class="row"><label for="start">Active from</label>' +
         '<select id="start">' + hourOptions(cfg.CFG_START_HOUR) + '</select></div>' +
       '<div class="row"><label for="end">Active until</label>' +
         '<select id="end">' + hourOptions(cfg.CFG_END_HOUR) + '</select></div>' +
     '</div>' +
     '<div class="hint">Set “from” later than “until” to span midnight (e.g. 22:00 → 06:00). ' +
-      'Equal values chime every hour, all day.</div>' +
+      'Equal values chime every hour, all day. A window that crosses midnight is ' +
+      'judged by the calendar day each chime falls on.</div>' +
 
     '<button id="save">Save</button>' +
 
@@ -158,7 +166,8 @@ function buildPage(cfg) {
         'CFG_START_HOUR:parseInt(gi("start").value,10),' +
         'CFG_END_HOUR:parseInt(gi("end").value,10),' +
         'CFG_STYLE:parseInt(gi("style").value,10),' +
-        'CFG_STRIKE_COUNT:parseInt(gi("strike").value,10)' +
+        'CFG_STRIKE_COUNT:parseInt(gi("strike").value,10),' +
+        'CFG_DAYS:parseInt(gi("days").value,10)' +
       '};' +
       'document.location="pebblejs://close#"+encodeURIComponent(JSON.stringify(out));' +
     '});' +

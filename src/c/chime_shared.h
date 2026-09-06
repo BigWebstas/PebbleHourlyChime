@@ -15,12 +15,18 @@
 
 /* Persistent storage slot holding a serialised HcSettings struct. */
 #define HC_SETTINGS_KEY      1
-#define HC_SETTINGS_VERSION  1
+#define HC_SETTINGS_VERSION  2
 
 typedef enum {
   HC_MODE_WAKEUP = 0,  /* Wakeup API reschedules an app launch each hour. */
   HC_MODE_WORKER = 1,  /* Background worker relaunches the app each hour.  */
 } HcMode;
+
+typedef enum {
+  HC_DAYS_ALL      = 0,  /* chime every day */
+  HC_DAYS_WEEKDAYS = 1,  /* Mon-Fri only */
+  HC_DAYS_WEEKENDS = 2,  /* Sat-Sun only */
+} HcDays;
 
 typedef enum {
   HC_STYLE_BEEP        = 0,
@@ -49,6 +55,7 @@ typedef struct {
   uint8_t end_hour;      /* 0..23, inclusive; < start_hour means wrap midnight */
   uint8_t style;         /* HcStyle */
   uint8_t strike_count;  /* 0 = strike the current hour (12h), else fixed count */
+  uint8_t days;          /* HcDays: which days of the week to chime */
 } HcSettings;
 
 static inline void hc_settings_defaults(HcSettings *s) {
@@ -63,6 +70,7 @@ static inline void hc_settings_defaults(HcSettings *s) {
   s->end_hour     = 22;
   s->style        = HC_STYLE_WESTMINSTER;
   s->strike_count = 0;
+  s->days         = HC_DAYS_ALL;
 }
 
 static inline void hc_settings_load(HcSettings *s) {
@@ -87,6 +95,23 @@ static inline bool hc_is_active_hour(const HcSettings *s, int hour24) {
     return hour24 >= a && hour24 <= b;  /* same-day window */
   }
   return hour24 >= a || hour24 <= b;    /* window wraps past midnight */
+}
+
+/* True if the chime should sound on the given weekday (tm_wday: 0=Sun..6=Sat).
+ * A midnight-spanning window is judged by the calendar day it actually falls on,
+ * not by the day the window opened. */
+static inline bool hc_is_active_day(const HcSettings *s, int wday) {
+  bool weekend = (wday == 0 || wday == 6);
+  switch (s->days) {
+    case HC_DAYS_WEEKDAYS: return !weekend;
+    case HC_DAYS_WEEKENDS: return weekend;
+    default:               return true;
+  }
+}
+
+/* True if the chime should sound at the given hour on the given weekday. */
+static inline bool hc_is_active_time(const HcSettings *s, int hour24, int wday) {
+  return hc_is_active_day(s, wday) && hc_is_active_hour(s, hour24);
 }
 
 /* Number of strikes/beeps to play for the STRIKE style. */

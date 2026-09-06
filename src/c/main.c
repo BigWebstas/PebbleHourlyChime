@@ -54,8 +54,13 @@ static void hc_render_info(void) {
       s->sound ? (s->vibe ? "sound + vibe" : "sound only")
                : (s->vibe ? "vibe only" : "silent");
 
-  snprintf(s_info_buf, sizeof(s_info_buf), "Next: %s\n%s\nactive %02d:00-%02d:00\n%s mode",
-           when, out, s->start_hour, s->end_hour,
+  const char *days =
+      s->days == HC_DAYS_WEEKDAYS ? " Mon-Fri"
+    : s->days == HC_DAYS_WEEKENDS ? " Sat-Sun"
+                                  : "";
+
+  snprintf(s_info_buf, sizeof(s_info_buf), "Next: %s\n%s\nactive %02d:00-%02d:00%s\n%s mode",
+           when, out, s->start_hour, s->end_hour, days,
            s->mode == HC_MODE_WORKER ? "worker" : "wakeup");
   text_layer_set_text(s_info_layer, s_info_buf);
 }

@@ -8,10 +8,11 @@ time_t hc_next_chime_time(const HcSettings *s) {
   tm_next.tm_hour += 1;               /* top of the next hour */
   time_t candidate = mktime(&tm_next);
 
-  /* Skip forward to the next hour that is inside the active window. */
-  for (int i = 0; i < 26; i++) {
+  /* Skip forward to the next hour that is inside the active window. A
+   * weekends-only chime can be up to a week away, so scan a full week. */
+  for (int i = 0; i < 24 * 7 + 2; i++) {
     struct tm c = *localtime(&candidate);
-    if (hc_is_active_hour(s, c.tm_hour)) {
+    if (hc_is_active_time(s, c.tm_hour, c.tm_wday)) {
       return candidate;
     }
     candidate += 3600;
