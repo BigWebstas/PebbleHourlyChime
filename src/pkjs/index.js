@@ -14,7 +14,7 @@ var DEFAULTS = {
   CFG_VOLUME: 70,
   CFG_START_HOUR: 8,
   CFG_END_HOUR: 22,
-  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris
+  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris, 12 fox, 13 mission impossible, 14 indiana jones
   CFG_STRIKE_COUNT: 0,  // 0 = strike the current hour
   CFG_DAYS: 0           // 0 = every day, 1 = weekdays only, 2 = weekends only
 };
@@ -121,6 +121,9 @@ function buildPage(cfg) {
           '<option value="9"' + sel(cfg.CFG_STYLE, 9) + '>Casio beep</option>' +
           '<option value="10"' + sel(cfg.CFG_STYLE, 10) + '>Nokia tune</option>' +
           '<option value="11"' + sel(cfg.CFG_STYLE, 11) + '>Tetris</option>' +
+          '<option value="12"' + sel(cfg.CFG_STYLE, 12) + '>20th Century Fox</option>' +
+          '<option value="13"' + sel(cfg.CFG_STYLE, 13) + '>Mission: Impossible</option>' +
+          '<option value="14"' + sel(cfg.CFG_STYLE, 14) + '>Indiana Jones</option>' +
         '</select></div>' +
       '<div class="row"><label for="strike">Strike count</label>' +
         '<select id="strike">' +

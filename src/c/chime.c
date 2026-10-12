@@ -136,23 +136,22 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
     }
 
     case HC_STYLE_XFILES: {
-      /* The X-Files main theme — the whistled hook (A minor): the rising
-       * A-C-E-F figure, then the three repeated high A's. */
+      /* The X-Files main theme — the iconic whistled chorus (A minor):
+       * A4-E5-D5-E5-G5-E5, then A4-E5-D5-E5-A5-E5. */
       static const SpeakerNote notes[] = {
-        { 69, SpeakerWaveformSine, 130, 0, 0 },  /* A4 */
-        { 72, SpeakerWaveformSine, 130, 0, 0 },  /* C5 */
-        { 76, SpeakerWaveformSine, 130, 0, 0 },  /* E5 */
-        { 77, SpeakerWaveformSine, 380, 0, 0 },  /* F5 */
-        {  0, SpeakerWaveformSine, 120, 0, 0 },
-        { 72, SpeakerWaveformSine, 130, 0, 0 },  /* C5 */
-        { 76, SpeakerWaveformSine, 130, 0, 0 },  /* E5 */
-        { 77, SpeakerWaveformSine, 380, 0, 0 },  /* F5 */
-        {  0, SpeakerWaveformSine, 160, 0, 0 },
-        { 81, SpeakerWaveformSine, 300, 0, 0 },  /* A5 */
-        {  0, SpeakerWaveformSine,  90, 0, 0 },
-        { 81, SpeakerWaveformSine, 300, 0, 0 },  /* A5 */
-        {  0, SpeakerWaveformSine,  90, 0, 0 },
-        { 81, SpeakerWaveformSine, 540, 0, 0 },  /* A5 */
+        { 69, SpeakerWaveformSine, 220, 0, 0 },  /* A4 */
+        { 76, SpeakerWaveformSine, 220, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSine, 220, 0, 0 },  /* D5 */
+        { 76, SpeakerWaveformSine, 220, 0, 0 },  /* E5 */
+        { 79, SpeakerWaveformSine, 220, 0, 0 },  /* G5 */
+        { 76, SpeakerWaveformSine, 550, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine, 150, 0, 0 },  /* rest */
+        { 69, SpeakerWaveformSine, 220, 0, 0 },  /* A4 */
+        { 76, SpeakerWaveformSine, 220, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSine, 220, 0, 0 },  /* D5 */
+        { 76, SpeakerWaveformSine, 220, 0, 0 },  /* E5 */
+        { 81, SpeakerWaveformSine, 220, 0, 0 },  /* A5 */
+        { 76, SpeakerWaveformSine, 700, 0, 0 },  /* E5 */
       };
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }
@@ -218,7 +217,7 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
     }
 
     case HC_STYLE_TETRIS: {
-      /* Korobeiniki — the Tetris (Type A) theme, opening phrase. */
+      /* Korobeiniki — the Tetris (Type A) theme, opening hook resolved to A4. */
       static const SpeakerNote notes[] = {
         { 76, SpeakerWaveformSquare, 280, 0, 0 },  /* E5 */
         { 71, SpeakerWaveformSquare, 140, 0, 0 },  /* B4 */
@@ -226,21 +225,85 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
         { 74, SpeakerWaveformSquare, 280, 0, 0 },  /* D5 */
         { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
         { 71, SpeakerWaveformSquare, 140, 0, 0 },  /* B4 */
-        { 69, SpeakerWaveformSquare, 280, 0, 0 },  /* A4 */
-        {  0, SpeakerWaveformSine,    20, 0, 0 },
-        { 69, SpeakerWaveformSquare, 140, 0, 0 },  /* A4 */
-        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
-        { 76, SpeakerWaveformSquare, 280, 0, 0 },  /* E5 */
-        { 74, SpeakerWaveformSquare, 140, 0, 0 },  /* D5 */
-        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
-        { 71, SpeakerWaveformSquare, 420, 0, 0 },  /* B4 */
-        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
-        { 74, SpeakerWaveformSquare, 280, 0, 0 },  /* D5 */
-        { 76, SpeakerWaveformSquare, 280, 0, 0 },  /* E5 */
-        { 72, SpeakerWaveformSquare, 280, 0, 0 },  /* C5 */
-        { 69, SpeakerWaveformSquare, 280, 0, 0 },  /* A4 */
-        {  0, SpeakerWaveformSine,    20, 0, 0 },
-        { 69, SpeakerWaveformSquare, 420, 0, 0 },  /* A4 */
+        { 69, SpeakerWaveformSquare, 560, 0, 0 },  /* A4 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_FOX: {
+      /* Alfred Newman's 20th Century Fox fanfare hook:
+       * three rising flourishes punctuated by brass hits, ending in the grand fanfare cadence. */
+      static const SpeakerNote notes[] = {
+        /* Flourish 1: Bb major run up to G5 */
+        { 70, SpeakerWaveformSquare,  75, 0, 0 },  /* Bb4 */
+        { 74, SpeakerWaveformSquare,  75, 0, 0 },  /* D5  */
+        { 77, SpeakerWaveformSquare,  75, 0, 0 },  /* F5  */
+        { 79, SpeakerWaveformSquare, 260, 0, 0 },  /* G5  */
+        /* Brass response 1 (Cm) */
+        { 72, SpeakerWaveformSquare, 130, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,   110, 0, 0 },  /* rest */
+        { 72, SpeakerWaveformSquare,  55, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },  /* rest */
+        { 72, SpeakerWaveformSquare,  55, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },  /* rest */
+        { 72, SpeakerWaveformSquare, 230, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,    30, 0, 0 },  /* rest between repeated C5 */
+        /* Flourish 2: Cm run up to Bb5 */
+        { 72, SpeakerWaveformSquare,  75, 0, 0 },  /* C5  */
+        { 75, SpeakerWaveformSquare,  75, 0, 0 },  /* Eb5 */
+        { 79, SpeakerWaveformSquare,  75, 0, 0 },  /* G5  */
+        { 82, SpeakerWaveformSquare, 260, 0, 0 },  /* Bb5 */
+        /* Brass response 2 (F7) */
+        { 77, SpeakerWaveformSquare, 130, 0, 0 },  /* F5  */
+        {  0, SpeakerWaveformSine,   110, 0, 0 },  /* rest */
+        { 77, SpeakerWaveformSquare,  55, 0, 0 },  /* F5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },  /* rest */
+        { 77, SpeakerWaveformSquare,  55, 0, 0 },  /* F5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },  /* rest */
+        { 77, SpeakerWaveformSquare, 260, 0, 0 },  /* F5  */
+        /* Flourish 3: Diminished run up to Bb5 */
+        { 72, SpeakerWaveformSquare,  80, 0, 0 },  /* C5  */
+        { 75, SpeakerWaveformSquare,  80, 0, 0 },  /* Eb5 */
+        { 78, SpeakerWaveformSquare,  80, 0, 0 },  /* F#5 */
+        { 82, SpeakerWaveformSquare, 360, 0, 0 },  /* Bb5 */
+        /* Grand cadence */
+        { 77, SpeakerWaveformSquare, 110, 0, 0 },  /* F5  */
+        {  0, SpeakerWaveformSine,    35, 0, 0 },  /* rest */
+        { 74, SpeakerWaveformSquare, 110, 0, 0 },  /* D5  */
+        {  0, SpeakerWaveformSine,    35, 0, 0 },  /* rest */
+        { 75, SpeakerWaveformSquare, 110, 0, 0 },  /* Eb5 */
+        {  0, SpeakerWaveformSine,    35, 0, 0 },  /* rest */
+        { 77, SpeakerWaveformSquare, 750, 0, 0 },  /* F5  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_MISSION_IMPOSSIBLE: {
+      /* Lalo Schifrin's Mission: Impossible theme — iconic 5/4 brass melody hook (<2s). */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 500, 0, 0 },  /* G4 */
+        { 70, SpeakerWaveformSquare, 150, 0, 0 },  /* Bb4 */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },  /* rest */
+        { 72, SpeakerWaveformSquare, 175, 0, 0 },  /* C5 */
+        { 67, SpeakerWaveformSquare, 500, 0, 0 },  /* G4 */
+        { 65, SpeakerWaveformSquare, 150, 0, 0 },  /* F4 */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },  /* rest */
+        { 66, SpeakerWaveformSquare, 335, 0, 0 },  /* F#4 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_INDIANA_JONES: {
+      /* John Williams' The Raiders March (Indiana Jones theme) — opening 7-note hook (<2s). */
+      static const SpeakerNote notes[] = {
+        { 64, SpeakerWaveformSquare,  85, 0, 0 },  /* E4 */
+        { 65, SpeakerWaveformSquare,  85, 0, 0 },  /* F4 */
+        { 67, SpeakerWaveformSquare, 200, 0, 0 },  /* G4 */
+        { 72, SpeakerWaveformSquare, 500, 0, 0 },  /* C5 */
+        {  0, SpeakerWaveformSine,    60, 0, 0 },  /* rest */
+        { 62, SpeakerWaveformSquare,  85, 0, 0 },  /* D4 */
+        { 64, SpeakerWaveformSquare,  85, 0, 0 },  /* E4 */
+        { 65, SpeakerWaveformSquare, 700, 0, 0 },  /* F4 */
       };
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }

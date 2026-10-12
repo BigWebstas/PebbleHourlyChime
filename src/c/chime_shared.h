@@ -36,11 +36,14 @@ typedef enum {
   HC_STYLE_MARIO       = 4,  /* Opening phrase of the Super Mario Bros theme. */
   HC_STYLE_STARWARS    = 5,  /* Opening bars of the Star Wars main title. */
   HC_STYLE_SPONGEBOB   = 6,  /* "Who lives in a pineapple under the sea?" */
-  HC_STYLE_XFILES      = 7,  /* The X-Files main theme whistle hook. */
+  HC_STYLE_XFILES      = 7,  /* The X-Files main theme whistled chorus. */
   HC_STYLE_BATMAN      = 8,  /* Neal Hefti's 1960s Batman TV theme riff. */
   HC_STYLE_CASIO       = 9,  /* Casio F-91W hourly signal: two short beeps. */
   HC_STYLE_NOKIA       = 10, /* Nokia tune: the "Gran Vals" phrase. */
   HC_STYLE_TETRIS      = 11, /* Korobeiniki: the Tetris Type A theme. */
+  HC_STYLE_FOX                = 12, /* 20th Century Fox fanfare hook. */
+  HC_STYLE_MISSION_IMPOSSIBLE = 13, /* Lalo Schifrin's Mission: Impossible theme hook. */
+  HC_STYLE_INDIANA_JONES      = 14, /* John Williams' Raiders March (Indiana Jones) hook. */
   HC_STYLE_COUNT
 } HcStyle;
 

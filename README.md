@@ -1,8 +1,22 @@
 # Hourly Chime
 
+![Hourly Chime](resources/images/banner.png)
+
 A PebbleOS watchapp that chimes on the hour with the speaker and/or the vibration
 motor. Runs on **Pebble Time 2 (`emery`)** and **Pebble 2 Duo (`flint`)** — the
 two watches with a speaker.
+
+## Screenshots
+
+<p>
+  <img src="resources/screenshots/app-emery.png" alt="Watch app on Pebble Time 2" height="320">
+  <img src="resources/screenshots/config-light.png" alt="Config page, light" height="320">
+  <img src="resources/screenshots/config-dark.png" alt="Config page, dark" height="320">
+</p>
+
+The watch screen (left) shows the next chime, the sound/vibe mode, the active
+window, and the trigger backend. The config page (**Settings → Hourly Chime** in
+the Pebble app) follows the phone's light or dark theme.
 
 ## How it stays alive
 
@@ -21,9 +35,11 @@ launching the app to chime once and exit. Two backends, chosen on the config pag
 Single beep, Westminster (first phrase of the Quarters), Cuckoo, Hour strikes
 (a fixed count, or the current 12-hour hour), Mario (opening phrase of the
 Super Mario Bros. theme), Star Wars (opening bars of the main title), SpongeBob
-("Who lives in a pineapple under the sea?"), X-Files (the theme's whistle hook),
+("Who lives in a pineapple under the sea?"), X-Files (the theme's whistled chorus),
 Batman (the 1960s TV theme riff), Casio beep (the F-91W hourly signal),
-Nokia tune (the "Gran Vals" phrase), and Tetris (Korobeiniki).
+Nokia tune (the "Gran Vals" phrase), Tetris (Korobeiniki), 20th Century
+Fox (the movie fanfare hook), Mission: Impossible (the 5/4 theme hook), and
+Indiana Jones (The Raiders March opening hook).
 
 ## Settings
 
