@@ -109,36 +109,46 @@ function buildPage(cfg) {
     '<div class="grp">' +
       '<div class="row"><label for="style">Sound</label>' +
         '<select id="style">' +
-          '<option value="0"' + sel(cfg.CFG_STYLE, 0) + '>Single beep</option>' +
-          '<option value="1"' + sel(cfg.CFG_STYLE, 1) + '>Westminster</option>' +
-          '<option value="2"' + sel(cfg.CFG_STYLE, 2) + '>Cuckoo</option>' +
-          '<option value="3"' + sel(cfg.CFG_STYLE, 3) + '>Hour strikes</option>' +
-          '<option value="4"' + sel(cfg.CFG_STYLE, 4) + '>Mario</option>' +
-          '<option value="5"' + sel(cfg.CFG_STYLE, 5) + '>Star Wars</option>' +
-          '<option value="6"' + sel(cfg.CFG_STYLE, 6) + '>SpongeBob</option>' +
-          '<option value="7"' + sel(cfg.CFG_STYLE, 7) + '>X-Files</option>' +
-          '<option value="8"' + sel(cfg.CFG_STYLE, 8) + '>Batman</option>' +
-          '<option value="9"' + sel(cfg.CFG_STYLE, 9) + '>Casio beep</option>' +
-          '<option value="10"' + sel(cfg.CFG_STYLE, 10) + '>Nokia tune</option>' +
-          '<option value="11"' + sel(cfg.CFG_STYLE, 11) + '>Tetris</option>' +
-          '<option value="12"' + sel(cfg.CFG_STYLE, 12) + '>20th Century Fox</option>' +
-          '<option value="13"' + sel(cfg.CFG_STYLE, 13) + '>Mission: Impossible</option>' +
-          '<option value="14"' + sel(cfg.CFG_STYLE, 14) + '>Indiana Jones</option>' +
-          '<option value="15"' + sel(cfg.CFG_STYLE, 15) + '>Für Elise</option>' +
-          '<option value="16"' + sel(cfg.CFG_STYLE, 16) + '>Ode to Joy</option>' +
-          '<option value="17"' + sel(cfg.CFG_STYLE, 17) + '>Reveille</option>' +
-          '<option value="18"' + sel(cfg.CFG_STYLE, 18) + '>Beethoven’s 5th</option>' +
-          '<option value="19"' + sel(cfg.CFG_STYLE, 19) + '>Eine kleine Nachtmusik</option>' +
-          '<option value="20"' + sel(cfg.CFG_STYLE, 20) + '>William Tell Overture</option>' +
-          '<option value="21"' + sel(cfg.CFG_STYLE, 21) + '>Toccata and Fugue</option>' +
-          '<option value="22"' + sel(cfg.CFG_STYLE, 22) + '>Hall of the Mountain King</option>' +
-          '<option value="23"' + sel(cfg.CFG_STYLE, 23) + '>Ride of the Valkyries</option>' +
-          '<option value="24"' + sel(cfg.CFG_STYLE, 24) + '>Vivaldi’s Spring</option>' +
-          '<option value="25"' + sel(cfg.CFG_STYLE, 25) + '>Toreador Song (Carmen)</option>' +
-          '<option value="26"' + sel(cfg.CFG_STYLE, 26) + '>Habanera (Carmen)</option>' +
-          '<option value="27"' + sel(cfg.CFG_STYLE, 27) + '>Sugar Plum Fairy</option>' +
-          '<option value="28"' + sel(cfg.CFG_STYLE, 28) + '>First Call (Call to the Post)</option>' +
           '<option value="29"' + sel(cfg.CFG_STYLE, 29) + '>Random</option>' +
+          '<optgroup label="Clocks &amp; Signals">' +
+            '<option value="0"' + sel(cfg.CFG_STYLE, 0) + '>Single beep</option>' +
+            '<option value="9"' + sel(cfg.CFG_STYLE, 9) + '>Casio beep</option>' +
+            '<option value="1"' + sel(cfg.CFG_STYLE, 1) + '>Westminster</option>' +
+            '<option value="2"' + sel(cfg.CFG_STYLE, 2) + '>Cuckoo</option>' +
+            '<option value="3"' + sel(cfg.CFG_STYLE, 3) + '>Hour strikes</option>' +
+          '</optgroup>' +
+          '<optgroup label="Classical">' +
+            '<option value="15"' + sel(cfg.CFG_STYLE, 15) + '>Für Elise</option>' +
+            '<option value="16"' + sel(cfg.CFG_STYLE, 16) + '>Ode to Joy</option>' +
+            '<option value="18"' + sel(cfg.CFG_STYLE, 18) + '>Beethoven’s 5th</option>' +
+            '<option value="19"' + sel(cfg.CFG_STYLE, 19) + '>Eine kleine Nachtmusik</option>' +
+            '<option value="20"' + sel(cfg.CFG_STYLE, 20) + '>William Tell Overture</option>' +
+            '<option value="21"' + sel(cfg.CFG_STYLE, 21) + '>Toccata and Fugue</option>' +
+            '<option value="22"' + sel(cfg.CFG_STYLE, 22) + '>Hall of the Mountain King</option>' +
+            '<option value="23"' + sel(cfg.CFG_STYLE, 23) + '>Ride of the Valkyries</option>' +
+            '<option value="24"' + sel(cfg.CFG_STYLE, 24) + '>Vivaldi’s Spring</option>' +
+            '<option value="25"' + sel(cfg.CFG_STYLE, 25) + '>Toreador Song (Carmen)</option>' +
+            '<option value="26"' + sel(cfg.CFG_STYLE, 26) + '>Habanera (Carmen)</option>' +
+            '<option value="27"' + sel(cfg.CFG_STYLE, 27) + '>Sugar Plum Fairy</option>' +
+          '</optgroup>' +
+          '<optgroup label="Bugle Calls">' +
+            '<option value="17"' + sel(cfg.CFG_STYLE, 17) + '>Reveille</option>' +
+            '<option value="28"' + sel(cfg.CFG_STYLE, 28) + '>First Call (Call to the Post)</option>' +
+          '</optgroup>' +
+          '<optgroup label="Movies &amp; TV">' +
+            '<option value="5"' + sel(cfg.CFG_STYLE, 5) + '>Star Wars</option>' +
+            '<option value="12"' + sel(cfg.CFG_STYLE, 12) + '>20th Century Fox</option>' +
+            '<option value="14"' + sel(cfg.CFG_STYLE, 14) + '>Indiana Jones</option>' +
+            '<option value="13"' + sel(cfg.CFG_STYLE, 13) + '>Mission: Impossible</option>' +
+            '<option value="7"' + sel(cfg.CFG_STYLE, 7) + '>X-Files</option>' +
+            '<option value="8"' + sel(cfg.CFG_STYLE, 8) + '>Batman</option>' +
+            '<option value="6"' + sel(cfg.CFG_STYLE, 6) + '>SpongeBob</option>' +
+          '</optgroup>' +
+          '<optgroup label="Games &amp; Retro">' +
+            '<option value="4"' + sel(cfg.CFG_STYLE, 4) + '>Mario</option>' +
+            '<option value="11"' + sel(cfg.CFG_STYLE, 11) + '>Tetris</option>' +
+            '<option value="10"' + sel(cfg.CFG_STYLE, 10) + '>Nokia tune</option>' +
+          '</optgroup>' +
         '</select></div>' +
       '<div class="row"><label for="strike">Strike count</label>' +
         '<select id="strike">' +
