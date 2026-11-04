@@ -32,23 +32,14 @@ launching the app to chime once and exit. Two backends, chosen on the config pag
 
 ## Chime styles
 
-Single beep, Westminster (first phrase of the Quarters), Cuckoo, Hour strikes
-(a fixed count, or the current 12-hour hour), Mario (opening phrase of the
-Super Mario Bros. theme), Star Wars (opening bars of the main title), SpongeBob
-("Who lives in a pineapple under the sea?"), X-Files (the theme's whistled chorus),
-Batman (the 1960s TV theme riff), Casio beep (the F-91W hourly signal),
-Nokia tune (the "Gran Vals" phrase), Tetris (Korobeiniki), 20th Century
-Fox (the movie fanfare hook), Mission: Impossible (the 5/4 theme hook),
-Indiana Jones (The Raiders March opening hook), Für Elise (Beethoven's
-opening phrase), Ode to Joy (Symphony No. 9 opening phrase), Reveille
-(the military bugle call), Beethoven's 5th (the "Fate" motif), Eine kleine
-Nachtmusik (Mozart's opening fanfare), William Tell Overture (Rossini's
-finale gallop), Toccata and Fugue in D minor (Bach's organ opening), In the
-Hall of the Mountain King (Grieg's Peer Gynt hook), Ride of the Valkyries
-(Wagner's brass fanfare), Spring (Vivaldi's Four Seasons opening), Toreador
-Song and Habanera (from Bizet's *Carmen*), Dance of the Sugar Plum Fairy
-(Tchaikovsky's *Nutcracker* hook), First Call (the "Call to the Post"
-bugle fanfare), and Random (picks a random chime each time).
+29 built-in chime melodies plus a **Random** mode that picks a different chime each time:
+
+- **Clocks & signals** — Single beep, Casio beep (F-91W hourly signal), Westminster (first phrase of the Quarters), Cuckoo, Hour strikes (fixed count or the current 12-hour hour)
+- **Classical** — Für Elise (Beethoven), Ode to Joy (Beethoven's 9th), Beethoven's 5th ("Fate" motif), Eine kleine Nachtmusik (Mozart), William Tell Overture (Rossini), Toccata and Fugue in D minor (Bach), In the Hall of the Mountain King (Grieg), Ride of the Valkyries (Wagner), Vivaldi's Spring (*The Four Seasons*), Toreador Song (*Carmen*, Bizet), Habanera (*Carmen*, Bizet), Dance of the Sugar Plum Fairy (*The Nutcracker*, Tchaikovsky)
+- **Bugle calls** — Reveille, First Call (Call to the Post)
+- **Movies & TV** — Star Wars, 20th Century Fox fanfare, Indiana Jones (The Raiders March), Mission: Impossible, X-Files, Batman (1966 TV theme), SpongeBob
+- **Games & retro** — Mario (Super Mario Bros. overworld), Tetris (Korobeiniki), Nokia tune ("Gran Vals")
+- **Random** — Plays a randomly selected chime each hour (and on each test press)
 
 ## Settings
 

@@ -111,8 +111,8 @@ text((tx, 146), "Chime on the hour — speaker, vibration, or both.",
 text((tx, 188), "PEBBLE TIME 2    ·    PEBBLE 2 DUO",
      fit(F_BOLD, 14, "PEBBLE TIME 2    ·    PEBBLE 2 DUO", rmax, spacing=2),
      AMBER, spacing=2, anchor="lm")
-text((tx, 224), "Westminster · Cuckoo · Mario · Tetris · and 8 more",
-     fit(F_REG, 14, "Westminster · Cuckoo · Mario · Tetris · and 8 more", rmax),
+text((tx, 224), "Westminster · Für Elise · Mario · Tetris · and 25 more",
+     fit(F_REG, 14, "Westminster · Für Elise · Mario · Tetris · and 25 more", rmax),
      GRAY, anchor="lm")
 
 # --------------------------------------------------------------------
