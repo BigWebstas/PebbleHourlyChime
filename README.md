@@ -38,8 +38,17 @@ Super Mario Bros. theme), Star Wars (opening bars of the main title), SpongeBob
 ("Who lives in a pineapple under the sea?"), X-Files (the theme's whistled chorus),
 Batman (the 1960s TV theme riff), Casio beep (the F-91W hourly signal),
 Nokia tune (the "Gran Vals" phrase), Tetris (Korobeiniki), 20th Century
-Fox (the movie fanfare hook), Mission: Impossible (the 5/4 theme hook), and
-Indiana Jones (The Raiders March opening hook).
+Fox (the movie fanfare hook), Mission: Impossible (the 5/4 theme hook),
+Indiana Jones (The Raiders March opening hook), Für Elise (Beethoven's
+opening phrase), Ode to Joy (Symphony No. 9 opening phrase), Reveille
+(the military bugle call), Beethoven's 5th (the "Fate" motif), Eine kleine
+Nachtmusik (Mozart's opening fanfare), William Tell Overture (Rossini's
+finale gallop), Toccata and Fugue in D minor (Bach's organ opening), In the
+Hall of the Mountain King (Grieg's Peer Gynt hook), Ride of the Valkyries
+(Wagner's brass fanfare), Spring (Vivaldi's Four Seasons opening), Toreador
+Song and Habanera (from Bizet's *Carmen*), Dance of the Sugar Plum Fairy
+(Tchaikovsky's *Nutcracker* hook), First Call (the "Call to the Post"
+bugle fanfare), and Random (picks a random chime each time).
 
 ## Settings
 

@@ -1,13 +1,29 @@
+#include <stdlib.h>
 #include "chime.h"
+
+static HcStyle hc_resolve_style(HcStyle style) {
+  if (style != HC_STYLE_RANDOM) {
+    return style;
+  }
+  static bool s_seeded = false;
+  if (!s_seeded) {
+    time_t sec;
+    uint16_t ms;
+    time_ms(&sec, &ms);
+    srand((unsigned int)(sec ^ ((uint32_t)ms << 16)));
+    s_seeded = true;
+  }
+  return (HcStyle)(rand() % HC_STYLE_RANDOM);
+}
 
 /* --- vibration ---------------------------------------------------------- */
 
-static void hc_do_vibe(const HcSettings *s, int strikes) {
+static void hc_do_vibe(const HcSettings *s, HcStyle style, int strikes) {
   if (!s->vibe) {
     return;
   }
 
-  if (s->style == HC_STYLE_STRIKE) {
+  if (style == HC_STYLE_STRIKE) {
     /* One short buzz per strike. vibes_enqueue_custom_pattern copies the
      * pattern, but keep the buffer static to be safe. */
     static uint32_t segments[24];
@@ -28,14 +44,14 @@ static void hc_do_vibe(const HcSettings *s, int strikes) {
 
 /* --- speaker ----------------------------------------------------------- */
 
-static bool hc_play_sound(const HcSettings *s, int strikes) {
+static bool hc_play_sound(const HcSettings *s, HcStyle style, int strikes) {
   if (!s->sound || speaker_is_muted()) {
     return false;
   }
 
   const uint8_t vol = s->volume;
 
-  switch (s->style) {
+  switch (style) {
     case HC_STYLE_WESTMINSTER: {
       /* First phrase of the Westminster Quarters (change ring). */
       static const SpeakerNote notes[] = {
@@ -308,6 +324,369 @@ static bool hc_play_sound(const HcSettings *s, int strikes) {
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }
 
+    case HC_STYLE_FUR_ELISE: {
+      /* Beethoven's Bagatelle No. 25 in A minor ("Für Elise") — opening 9-note phrase. */
+      static const SpeakerNote notes[] = {
+        { 76, SpeakerWaveformSquare, 150, 0, 0 },  /* E5  */
+        { 75, SpeakerWaveformSquare, 150, 0, 0 },  /* D#5 */
+        { 76, SpeakerWaveformSquare, 150, 0, 0 },  /* E5  */
+        { 75, SpeakerWaveformSquare, 150, 0, 0 },  /* D#5 */
+        { 76, SpeakerWaveformSquare, 150, 0, 0 },  /* E5  */
+        { 71, SpeakerWaveformSquare, 150, 0, 0 },  /* B4  */
+        { 74, SpeakerWaveformSquare, 150, 0, 0 },  /* D5  */
+        { 72, SpeakerWaveformSquare, 150, 0, 0 },  /* C5  */
+        { 69, SpeakerWaveformSquare, 480, 0, 0 },  /* A4  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_ODE_TO_JOY: {
+      /* Beethoven's Symphony No. 9 ("Ode to Joy") — opening 4-bar phrase in C major. */
+      static const SpeakerNote notes[] = {
+        { 76, SpeakerWaveformSquare, 200, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },  /* E5 */
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },  /* F5 */
+        { 79, SpeakerWaveformSquare, 200, 0, 0 },  /* G5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },  /* G5 */
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },  /* F5 */
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },  /* D5 */
+        { 72, SpeakerWaveformSquare, 200, 0, 0 },  /* C5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },  /* C5 */
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },  /* D5 */
+        { 76, SpeakerWaveformSquare, 200, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 330, 0, 0 },  /* E5. */
+        { 74, SpeakerWaveformSquare, 110, 0, 0 },  /* D5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 74, SpeakerWaveformSquare, 440, 0, 0 },  /* D5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_REVEILLE: {
+      /* Traditional military bugle call "Reveille" ("I can't get 'em up..."). */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 130, 0, 0 },  /* G4  I      */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  can't  */
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  get    */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  'em    */
+        { 67, SpeakerWaveformSquare, 130, 0, 0 },  /* G4  up,    */
+        { 76, SpeakerWaveformSquare, 180, 0, 0 },  /* E5         */
+        { 67, SpeakerWaveformSquare, 130, 0, 0 },  /* G4  I      */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  can't  */
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  get    */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  'em    */
+        { 67, SpeakerWaveformSquare, 130, 0, 0 },  /* G4  up,    */
+        { 76, SpeakerWaveformSquare, 180, 0, 0 },  /* E5         */
+        { 67, SpeakerWaveformSquare, 130, 0, 0 },  /* G4  I      */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  can't  */
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  get    */
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },  /* C5  'em    */
+        { 67, SpeakerWaveformSquare, 130, 0, 0 },  /* G4  up     */
+        { 76, SpeakerWaveformSquare, 200, 0, 0 },  /* E5  this   */
+        { 72, SpeakerWaveformSquare, 200, 0, 0 },  /* C5  morn-  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 72, SpeakerWaveformSquare, 420, 0, 0 },  /* C5  -ing!  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_BEETHOVEN_5TH: {
+      /* Beethoven's Symphony No. 5 in C minor — "Fate knocking at the door" motif. */
+      static const SpeakerNote notes[] = {
+        { 79, SpeakerWaveformSquare, 130, 0, 0 },  /* G5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 79, SpeakerWaveformSquare, 130, 0, 0 },  /* G5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 79, SpeakerWaveformSquare, 130, 0, 0 },  /* G5  */
+        { 75, SpeakerWaveformSquare, 600, 0, 0 },  /* Eb5 */
+        {  0, SpeakerWaveformSine,   160, 0, 0 },
+        { 77, SpeakerWaveformSquare, 130, 0, 0 },  /* F5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 77, SpeakerWaveformSquare, 130, 0, 0 },  /* F5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 77, SpeakerWaveformSquare, 130, 0, 0 },  /* F5  */
+        { 74, SpeakerWaveformSquare, 700, 0, 0 },  /* D5  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_NACHTMUSIK: {
+      /* Mozart's Eine kleine Nachtmusik (K. 525) — opening 2-bar Allegro fanfare. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 240, 0, 0 },  /* G4  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 62, SpeakerWaveformSquare, 120, 0, 0 },  /* D4  */
+        { 67, SpeakerWaveformSquare, 240, 0, 0 },  /* G4  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 62, SpeakerWaveformSquare, 120, 0, 0 },  /* D4  */
+        { 67, SpeakerWaveformSquare, 120, 0, 0 },  /* G4  */
+        { 71, SpeakerWaveformSquare, 120, 0, 0 },  /* B4  */
+        { 74, SpeakerWaveformSquare, 320, 0, 0 },  /* D5  */
+        {  0, SpeakerWaveformSine,   110, 0, 0 },
+        { 72, SpeakerWaveformSquare, 240, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 69, SpeakerWaveformSquare, 120, 0, 0 },  /* A4  */
+        { 72, SpeakerWaveformSquare, 240, 0, 0 },  /* C5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 69, SpeakerWaveformSquare, 120, 0, 0 },  /* A4  */
+        { 72, SpeakerWaveformSquare, 120, 0, 0 },  /* C5  */
+        { 69, SpeakerWaveformSquare, 120, 0, 0 },  /* A4  */
+        { 66, SpeakerWaveformSquare, 120, 0, 0 },  /* F#4 */
+        { 69, SpeakerWaveformSquare, 120, 0, 0 },  /* A4  */
+        { 62, SpeakerWaveformSquare, 360, 0, 0 },  /* D4  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_WILLIAM_TELL: {
+      /* Rossini's William Tell Overture finale — the "Lone Ranger" gallop. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 160, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    30, 0, 0 },
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 160, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    30, 0, 0 },
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        { 72, SpeakerWaveformSquare, 170, 0, 0 },  /* C5 */
+        { 74, SpeakerWaveformSquare, 170, 0, 0 },  /* D5 */
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,    40, 0, 0 },
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },  /* G4 */
+        { 72, SpeakerWaveformSquare, 170, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSquare, 170, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare, 170, 0, 0 },  /* D5 */
+        { 71, SpeakerWaveformSquare, 170, 0, 0 },  /* B4 */
+        { 72, SpeakerWaveformSquare, 400, 0, 0 },  /* C5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_TOCCATA: {
+      /* J.S. Bach's Toccata and Fugue in D minor (BWV 565) — opening organ flourish. */
+      static const SpeakerNote notes[] = {
+        { 81, SpeakerWaveformSquare,  90, 0, 0 },  /* A5  */
+        { 79, SpeakerWaveformSquare,  90, 0, 0 },  /* G5  */
+        { 81, SpeakerWaveformSquare, 650, 0, 0 },  /* A5  */
+        {  0, SpeakerWaveformSine,   220, 0, 0 },
+        { 79, SpeakerWaveformSquare, 100, 0, 0 },  /* G5  */
+        { 77, SpeakerWaveformSquare, 100, 0, 0 },  /* F5  */
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },  /* E5  */
+        { 74, SpeakerWaveformSquare, 180, 0, 0 },  /* D5  */
+        { 73, SpeakerWaveformSquare, 260, 0, 0 },  /* C#5 */
+        { 74, SpeakerWaveformSquare, 650, 0, 0 },  /* D5  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_MOUNTAIN_KING: {
+      /* Edvard Grieg's In the Hall of the Mountain King (Peer Gynt) — opening phrase. */
+      static const SpeakerNote notes[] = {
+        { 69, SpeakerWaveformSquare, 120, 0, 0 },  /* A4  */
+        { 71, SpeakerWaveformSquare, 120, 0, 0 },  /* B4  */
+        { 72, SpeakerWaveformSquare, 120, 0, 0 },  /* C5  */
+        { 74, SpeakerWaveformSquare, 120, 0, 0 },  /* D5  */
+        { 76, SpeakerWaveformSquare, 120, 0, 0 },  /* E5  */
+        { 72, SpeakerWaveformSquare, 120, 0, 0 },  /* C5  */
+        { 76, SpeakerWaveformSquare, 240, 0, 0 },  /* E5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 75, SpeakerWaveformSquare, 120, 0, 0 },  /* D#5 */
+        { 71, SpeakerWaveformSquare, 120, 0, 0 },  /* B4  */
+        { 75, SpeakerWaveformSquare, 240, 0, 0 },  /* D#5 */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 74, SpeakerWaveformSquare, 120, 0, 0 },  /* D5  */
+        { 70, SpeakerWaveformSquare, 120, 0, 0 },  /* Bb4 */
+        { 74, SpeakerWaveformSquare, 240, 0, 0 },  /* D5  */
+        {  0, SpeakerWaveformSine,    25, 0, 0 },
+        { 69, SpeakerWaveformSquare, 120, 0, 0 },  /* A4  */
+        { 71, SpeakerWaveformSquare, 120, 0, 0 },  /* B4  */
+        { 72, SpeakerWaveformSquare, 120, 0, 0 },  /* C5  */
+        { 74, SpeakerWaveformSquare, 120, 0, 0 },  /* D5  */
+        { 76, SpeakerWaveformSquare, 120, 0, 0 },  /* E5  */
+        { 72, SpeakerWaveformSquare, 120, 0, 0 },  /* C5  */
+        { 76, SpeakerWaveformSquare, 120, 0, 0 },  /* E5  */
+        { 81, SpeakerWaveformSquare, 120, 0, 0 },  /* A5  */
+        { 79, SpeakerWaveformSquare, 120, 0, 0 },  /* G5  */
+        { 76, SpeakerWaveformSquare, 120, 0, 0 },  /* E5  */
+        { 72, SpeakerWaveformSquare, 120, 0, 0 },  /* C5  */
+        { 76, SpeakerWaveformSquare, 120, 0, 0 },  /* E5  */
+        { 79, SpeakerWaveformSquare, 400, 0, 0 },  /* G5  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_VALKYRIES: {
+      /* Richard Wagner's Ride of the Valkyries — opening brass fanfare. */
+      static const SpeakerNote notes[] = {
+        { 71, SpeakerWaveformSquare, 130, 0, 0 },  /* B4 */
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },  /* E5 */
+        { 71, SpeakerWaveformSquare,  90, 0, 0 },  /* B4 */
+        { 76, SpeakerWaveformSquare, 150, 0, 0 },  /* E5 */
+        { 79, SpeakerWaveformSquare, 360, 0, 0 },  /* G5 */
+        { 76, SpeakerWaveformSquare, 360, 0, 0 },  /* E5 */
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },  /* G5 */
+        { 76, SpeakerWaveformSquare,  90, 0, 0 },  /* E5 */
+        { 79, SpeakerWaveformSquare, 150, 0, 0 },  /* G5 */
+        { 83, SpeakerWaveformSquare, 360, 0, 0 },  /* B5 */
+        { 79, SpeakerWaveformSquare, 500, 0, 0 },  /* G5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_SPRING: {
+      /* Antonio Vivaldi's Spring (The Four Seasons) — opening Allegro phrase. */
+      static const SpeakerNote notes[] = {
+        { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare,  90, 0, 0 },  /* D5 */
+        { 72, SpeakerWaveformSquare,  90, 0, 0 },  /* C5 */
+        { 79, SpeakerWaveformSquare, 400, 0, 0 },  /* G5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 79, SpeakerWaveformSquare,  90, 0, 0 },  /* G5 */
+        { 77, SpeakerWaveformSquare,  90, 0, 0 },  /* F5 */
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare,  90, 0, 0 },  /* D5 */
+        { 72, SpeakerWaveformSquare,  90, 0, 0 },  /* C5 */
+        { 79, SpeakerWaveformSquare, 400, 0, 0 },  /* G5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 79, SpeakerWaveformSquare,  90, 0, 0 },  /* G5 */
+        { 77, SpeakerWaveformSquare,  90, 0, 0 },  /* F5 */
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        { 77, SpeakerWaveformSquare,  90, 0, 0 },  /* F5 */
+        { 79, SpeakerWaveformSquare,  90, 0, 0 },  /* G5 */
+        { 77, SpeakerWaveformSquare, 180, 0, 0 },  /* F5 */
+        { 76, SpeakerWaveformSquare, 180, 0, 0 },  /* E5 */
+        { 74, SpeakerWaveformSquare, 360, 0, 0 },  /* D5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_TOREADOR: {
+      /* Georges Bizet's Toreador Song (Carmen) — "Toréador, en garde!" refrain. */
+      static const SpeakerNote notes[] = {
+        { 79, SpeakerWaveformSquare, 340, 0, 0 },  /* G5  To-   */
+        { 81, SpeakerWaveformSquare, 120, 0, 0 },  /* A5  -ré-  */
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },  /* G5  -a-   */
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },  /* E5  -dor, */
+        { 72, SpeakerWaveformSquare, 130, 0, 0 },  /* C5  en    */
+        { 76, SpeakerWaveformSquare,  80, 0, 0 },  /* E5        */
+        { 74, SpeakerWaveformSquare, 240, 0, 0 },  /* D5  gar-  */
+        { 72, SpeakerWaveformSquare, 300, 0, 0 },  /* C5  -de!  */
+        {  0, SpeakerWaveformSine,    90, 0, 0 },
+        { 74, SpeakerWaveformSquare, 170, 0, 0 },  /* D5  To-   */
+        { 76, SpeakerWaveformSquare,  80, 0, 0 },  /* E5  -ré-  */
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },  /* F5  -a-   */
+        { 69, SpeakerWaveformSquare, 300, 0, 0 },  /* A4  -dor! */
+        {  0, SpeakerWaveformSine,    80, 0, 0 },
+        { 71, SpeakerWaveformSquare, 170, 0, 0 },  /* B4  To-   */
+        { 72, SpeakerWaveformSquare,  80, 0, 0 },  /* C5  -ré-  */
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },  /* D5  -a-   */
+        { 67, SpeakerWaveformSquare, 420, 0, 0 },  /* G4  -dor! */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_HABANERA: {
+      /* Georges Bizet's Habanera (Carmen) — chromatic descending hook. */
+      static const SpeakerNote notes[] = {
+        { 81, SpeakerWaveformSquare, 260, 0, 0 },  /* A5  */
+        { 80, SpeakerWaveformSquare, 260, 0, 0 },  /* G#5 */
+        { 79, SpeakerWaveformSquare, 110, 0, 0 },  /* G5  */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 79, SpeakerWaveformSquare, 110, 0, 0 },  /* G5  */
+        { 78, SpeakerWaveformSquare, 110, 0, 0 },  /* F#5 */
+        { 77, SpeakerWaveformSquare, 160, 0, 0 },  /* F5  */
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5  */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5  */
+        { 75, SpeakerWaveformSquare, 160, 0, 0 },  /* D#5 */
+        { 74, SpeakerWaveformSquare, 160, 0, 0 },  /* D5  */
+        { 72, SpeakerWaveformSquare, 130, 0, 0 },  /* C5  */
+        { 74, SpeakerWaveformSquare,  70, 0, 0 },  /* D5  */
+        { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5  */
+        { 71, SpeakerWaveformSquare, 160, 0, 0 },  /* B4  */
+        { 69, SpeakerWaveformSquare, 420, 0, 0 },  /* A4  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_SUGAR_PLUM: {
+      /* Tchaikovsky's Dance of the Sugar Plum Fairy (The Nutcracker) — celesta hook. */
+      static const SpeakerNote notes[] = {
+        { 79, SpeakerWaveformSquare,  90, 0, 0 },  /* G5  */
+        { 78, SpeakerWaveformSquare,  90, 0, 0 },  /* F#5 */
+        { 79, SpeakerWaveformSquare, 110, 0, 0 },  /* G5  */
+        {  0, SpeakerWaveformSine,    50, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },  /* E5  */
+        {  0, SpeakerWaveformSine,    50, 0, 0 },
+        { 80, SpeakerWaveformSquare, 110, 0, 0 },  /* G#5 */
+        {  0, SpeakerWaveformSine,    50, 0, 0 },
+        { 78, SpeakerWaveformSquare, 110, 0, 0 },  /* F#5 */
+        {  0, SpeakerWaveformSine,   120, 0, 0 },
+        { 75, SpeakerWaveformSquare, 100, 0, 0 },  /* D#5 */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 75, SpeakerWaveformSquare, 100, 0, 0 },  /* D#5 */
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },  /* E5  */
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },  /* E5  */
+        { 75, SpeakerWaveformSquare, 100, 0, 0 },  /* D#5 */
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },  /* E5  */
+        { 78, SpeakerWaveformSquare, 160, 0, 0 },  /* F#5 */
+        {  0, SpeakerWaveformSine,    40, 0, 0 },
+        { 71, SpeakerWaveformSquare, 360, 0, 0 },  /* B4  */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_FIRST_CALL: {
+      /* Traditional "First Call" / "Call to the Post" horse-racing bugle fanfare. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 100, 0, 0 },  /* G4 */
+        { 72, SpeakerWaveformSquare, 100, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },  /* E5 */
+        { 79, SpeakerWaveformSquare, 320, 0, 0 },  /* G5 */
+        { 76, SpeakerWaveformSquare, 140, 0, 0 },  /* E5 */
+        { 79, SpeakerWaveformSquare, 380, 0, 0 },  /* G5 */
+        {  0, SpeakerWaveformSine,    60, 0, 0 },
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },  /* E5 */
+        { 79, SpeakerWaveformSquare, 100, 0, 0 },  /* G5 */
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },  /* E5 */
+        { 72, SpeakerWaveformSquare, 100, 0, 0 },  /* C5 */
+        { 67, SpeakerWaveformSquare, 100, 0, 0 },  /* G4 */
+        { 72, SpeakerWaveformSquare, 100, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSquare, 320, 0, 0 },  /* E5 */
+        { 72, SpeakerWaveformSquare, 140, 0, 0 },  /* C5 */
+        { 76, SpeakerWaveformSquare, 160, 0, 0 },  /* E5 */
+        { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5 */
+        { 67, SpeakerWaveformSquare, 160, 0, 0 },  /* G4 */
+        { 72, SpeakerWaveformSquare, 450, 0, 0 },  /* C5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
     case HC_STYLE_BEEP:
     default:
       return speaker_play_tone(3520, 180, vol, SpeakerWaveformSine);
@@ -321,10 +700,11 @@ bool hc_chime_play(const HcSettings *s, int hour24, bool force) {
     return false;
   }
 
+  const HcStyle style = hc_resolve_style((HcStyle)s->style);
   const int strikes = hc_strike_count(s, hour24);
-  hc_do_vibe(s, strikes);
-  bool sound = hc_play_sound(s, strikes);
-  APP_LOG(APP_LOG_LEVEL_INFO, "chime: hour=%d style=%d strikes=%d vibe=%d sound=%d muted=%d",
-          hour24, s->style, strikes, s->vibe, sound, speaker_is_muted());
+  hc_do_vibe(s, style, strikes);
+  bool sound = hc_play_sound(s, style, strikes);
+  APP_LOG(APP_LOG_LEVEL_INFO, "chime: hour=%d style=%d (cfg=%d) strikes=%d vibe=%d sound=%d muted=%d",
+          hour24, style, s->style, strikes, s->vibe, sound, speaker_is_muted());
   return sound;
 }

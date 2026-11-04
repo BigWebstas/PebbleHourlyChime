@@ -14,7 +14,7 @@ var DEFAULTS = {
   CFG_VOLUME: 70,
   CFG_START_HOUR: 8,
   CFG_END_HOUR: 22,
-  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris, 12 fox, 13 mission impossible, 14 indiana jones
+  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris, 12 fox, 13 mission impossible, 14 indiana jones, 15 fur elise, 16 ode to joy, 17 reveille
   CFG_STRIKE_COUNT: 0,  // 0 = strike the current hour
   CFG_DAYS: 0           // 0 = every day, 1 = weekdays only, 2 = weekends only
 };
@@ -124,6 +124,21 @@ function buildPage(cfg) {
           '<option value="12"' + sel(cfg.CFG_STYLE, 12) + '>20th Century Fox</option>' +
           '<option value="13"' + sel(cfg.CFG_STYLE, 13) + '>Mission: Impossible</option>' +
           '<option value="14"' + sel(cfg.CFG_STYLE, 14) + '>Indiana Jones</option>' +
+          '<option value="15"' + sel(cfg.CFG_STYLE, 15) + '>Für Elise</option>' +
+          '<option value="16"' + sel(cfg.CFG_STYLE, 16) + '>Ode to Joy</option>' +
+          '<option value="17"' + sel(cfg.CFG_STYLE, 17) + '>Reveille</option>' +
+          '<option value="18"' + sel(cfg.CFG_STYLE, 18) + '>Beethoven’s 5th</option>' +
+          '<option value="19"' + sel(cfg.CFG_STYLE, 19) + '>Eine kleine Nachtmusik</option>' +
+          '<option value="20"' + sel(cfg.CFG_STYLE, 20) + '>William Tell Overture</option>' +
+          '<option value="21"' + sel(cfg.CFG_STYLE, 21) + '>Toccata and Fugue</option>' +
+          '<option value="22"' + sel(cfg.CFG_STYLE, 22) + '>Hall of the Mountain King</option>' +
+          '<option value="23"' + sel(cfg.CFG_STYLE, 23) + '>Ride of the Valkyries</option>' +
+          '<option value="24"' + sel(cfg.CFG_STYLE, 24) + '>Vivaldi’s Spring</option>' +
+          '<option value="25"' + sel(cfg.CFG_STYLE, 25) + '>Toreador Song (Carmen)</option>' +
+          '<option value="26"' + sel(cfg.CFG_STYLE, 26) + '>Habanera (Carmen)</option>' +
+          '<option value="27"' + sel(cfg.CFG_STYLE, 27) + '>Sugar Plum Fairy</option>' +
+          '<option value="28"' + sel(cfg.CFG_STYLE, 28) + '>First Call (Call to the Post)</option>' +
+          '<option value="29"' + sel(cfg.CFG_STYLE, 29) + '>Random</option>' +
         '</select></div>' +
       '<div class="row"><label for="strike">Strike count</label>' +
         '<select id="strike">' +

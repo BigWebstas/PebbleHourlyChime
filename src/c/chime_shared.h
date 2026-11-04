@@ -44,6 +44,21 @@ typedef enum {
   HC_STYLE_FOX                = 12, /* 20th Century Fox fanfare hook. */
   HC_STYLE_MISSION_IMPOSSIBLE = 13, /* Lalo Schifrin's Mission: Impossible theme hook. */
   HC_STYLE_INDIANA_JONES      = 14, /* John Williams' Raiders March (Indiana Jones) hook. */
+  HC_STYLE_FUR_ELISE          = 15, /* Beethoven's Für Elise opening phrase. */
+  HC_STYLE_ODE_TO_JOY         = 16, /* Beethoven's Ode to Joy (Symphony No. 9) opening phrase. */
+  HC_STYLE_REVEILLE           = 17, /* Traditional military bugle call Reveille. */
+  HC_STYLE_BEETHOVEN_5TH      = 18, /* Beethoven's Symphony No. 5 "Fate" motif. */
+  HC_STYLE_NACHTMUSIK         = 19, /* Mozart's Eine kleine Nachtmusik opening fanfare. */
+  HC_STYLE_WILLIAM_TELL       = 20, /* Rossini's William Tell Overture finale gallop. */
+  HC_STYLE_TOCCATA            = 21, /* Bach's Toccata and Fugue in D minor opening. */
+  HC_STYLE_MOUNTAIN_KING      = 22, /* Grieg's In the Hall of the Mountain King hook. */
+  HC_STYLE_VALKYRIES          = 23, /* Wagner's Ride of the Valkyries fanfare. */
+  HC_STYLE_SPRING             = 24, /* Vivaldi's Spring (The Four Seasons) opening. */
+  HC_STYLE_TOREADOR           = 25, /* Bizet's Toreador Song (Carmen) refrain. */
+  HC_STYLE_HABANERA           = 26, /* Bizet's Habanera (Carmen) chromatic hook. */
+  HC_STYLE_SUGAR_PLUM         = 27, /* Tchaikovsky's Dance of the Sugar Plum Fairy. */
+  HC_STYLE_FIRST_CALL         = 28, /* Traditional "Call to the Post" bugle fanfare. */
+  HC_STYLE_RANDOM             = 29, /* Pick a random chime style each time. */
   HC_STYLE_COUNT
 } HcStyle;
 
