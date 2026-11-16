@@ -885,6 +885,154 @@ static bool hc_play_sound(const HcSettings *s, HcStyle style, int strikes) {
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }
 
+    case HC_STYLE_CHARGE: {
+      /* Cavalry "Charge!" fanfare. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare,  80, 0, 0 },
+        { 72, SpeakerWaveformSquare,  80, 0, 0 },
+        { 76, SpeakerWaveformSquare,  80, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 100, 0, 0 },
+        { 79, SpeakerWaveformSquare, 660, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_IMPERIAL_MARCH: {
+      /* Imperial March (Darth Vader's theme), John Williams. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 440, 0, 0 },
+        { 63, SpeakerWaveformSquare, 390, 0, 0 },
+        { 70, SpeakerWaveformSquare, 110, 0, 0 },
+        { 67, SpeakerWaveformSquare, 440, 0, 0 },
+        { 63, SpeakerWaveformSquare, 390, 0, 0 },
+        { 70, SpeakerWaveformSquare, 110, 0, 0 },
+        { 67, SpeakerWaveformSquare, 880, 0, 0 },
+        { 74, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 74, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 74, SpeakerWaveformSquare, 440, 0, 0 },
+        { 75, SpeakerWaveformSquare, 390, 0, 0 },
+        { 70, SpeakerWaveformSquare, 110, 0, 0 },
+        { 66, SpeakerWaveformSquare, 440, 0, 0 },
+        { 63, SpeakerWaveformSquare, 390, 0, 0 },
+        { 70, SpeakerWaveformSquare, 110, 0, 0 },
+        { 67, SpeakerWaveformSquare, 880, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_JAWS: {
+      /* Jaws theme, John Williams: accelerating E-F ostinato. */
+      static const SpeakerNote notes[] = {
+        { 64, SpeakerWaveformSquare, 400, 0, 0 },
+        { 65, SpeakerWaveformSquare, 400, 0, 0 },
+        { 64, SpeakerWaveformSquare, 350, 0, 0 },
+        { 65, SpeakerWaveformSquare, 350, 0, 0 },
+        { 64, SpeakerWaveformSquare, 280, 0, 0 },
+        { 65, SpeakerWaveformSquare, 280, 0, 0 },
+        { 64, SpeakerWaveformSquare, 200, 0, 0 },
+        { 65, SpeakerWaveformSquare, 200, 0, 0 },
+        { 64, SpeakerWaveformSquare, 140, 0, 0 },
+        { 65, SpeakerWaveformSquare, 140, 0, 0 },
+        { 64, SpeakerWaveformSquare, 100, 0, 0 },
+        { 65, SpeakerWaveformSquare, 100, 0, 0 },
+        { 64, SpeakerWaveformSquare, 100, 0, 0 },
+        { 65, SpeakerWaveformSquare, 100, 0, 0 },
+        { 64, SpeakerWaveformSquare, 100, 0, 0 },
+        { 65, SpeakerWaveformSquare, 300, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_PINK_PANTHER: {
+      /* The Pink Panther Theme, Henry Mancini. */
+      static const SpeakerNote notes[] = {
+        { 63, SpeakerWaveformSquare, 150, 0, 0 },
+        { 64, SpeakerWaveformSquare, 350, 0, 0 },
+        {  0, SpeakerWaveformSquare, 200, 0, 0 },
+        { 66, SpeakerWaveformSquare, 150, 0, 0 },
+        { 67, SpeakerWaveformSquare, 350, 0, 0 },
+        {  0, SpeakerWaveformSquare, 200, 0, 0 },
+        { 63, SpeakerWaveformSquare, 150, 0, 0 },
+        { 64, SpeakerWaveformSquare, 200, 0, 0 },
+        { 66, SpeakerWaveformSquare, 150, 0, 0 },
+        { 67, SpeakerWaveformSquare, 200, 0, 0 },
+        { 72, SpeakerWaveformSquare, 150, 0, 0 },
+        { 71, SpeakerWaveformSquare, 150, 0, 0 },
+        { 64, SpeakerWaveformSquare, 150, 0, 0 },
+        { 67, SpeakerWaveformSquare, 150, 0, 0 },
+        { 71, SpeakerWaveformSquare, 150, 0, 0 },
+        { 70, SpeakerWaveformSquare, 700, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_ZELDA_SECRET: {
+      /* The Legend of Zelda "secret found" jingle. */
+      static const SpeakerNote notes[] = {
+        { 79, SpeakerWaveformSquare, 110, 0, 0 },
+        { 78, SpeakerWaveformSquare, 110, 0, 0 },
+        { 75, SpeakerWaveformSquare, 110, 0, 0 },
+        { 69, SpeakerWaveformSquare, 110, 0, 0 },
+        { 68, SpeakerWaveformSquare, 110, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },
+        { 80, SpeakerWaveformSquare, 110, 0, 0 },
+        { 84, SpeakerWaveformSquare, 450, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_HAPPY_BIRTHDAY: {
+      /* Happy Birthday to You, in C. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 110, 0, 0 },
+        { 69, SpeakerWaveformSquare, 440, 0, 0 },
+        { 67, SpeakerWaveformSquare, 440, 0, 0 },
+        { 72, SpeakerWaveformSquare, 440, 0, 0 },
+        { 71, SpeakerWaveformSquare, 660, 0, 0 },
+        { 67, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 110, 0, 0 },
+        { 69, SpeakerWaveformSquare, 440, 0, 0 },
+        { 67, SpeakerWaveformSquare, 440, 0, 0 },
+        { 74, SpeakerWaveformSquare, 440, 0, 0 },
+        { 72, SpeakerWaveformSquare, 660, 0, 0 },
+        { 67, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 110, 0, 0 },
+        { 79, SpeakerWaveformSquare, 440, 0, 0 },
+        { 76, SpeakerWaveformSquare, 440, 0, 0 },
+        { 72, SpeakerWaveformSquare, 440, 0, 0 },
+        { 71, SpeakerWaveformSquare, 440, 0, 0 },
+        { 69, SpeakerWaveformSquare, 440, 0, 0 },
+        { 77, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 77, SpeakerWaveformSquare, 110, 0, 0 },
+        { 76, SpeakerWaveformSquare, 440, 0, 0 },
+        { 72, SpeakerWaveformSquare, 440, 0, 0 },
+        { 74, SpeakerWaveformSquare, 440, 0, 0 },
+        { 72, SpeakerWaveformSquare, 660, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_DOORBELL: {
+      /* Two-tone doorbell: ding-dong. */
+      static const SpeakerNote notes[] = {
+        { 76, SpeakerWaveformSquare, 350, 0, 0 },
+        { 72, SpeakerWaveformSquare, 750, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
     case HC_STYLE_BEEP:
     default:
       return speaker_play_tone(3520, 180, vol, SpeakerWaveformSine);

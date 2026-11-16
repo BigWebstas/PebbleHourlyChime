@@ -14,7 +14,7 @@ var DEFAULTS = {
   CFG_VOLUME: 70,
   CFG_START_HOUR: 8,
   CFG_END_HOUR: 22,
-  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris, 12 fox, 13 mission impossible, 14 indiana jones, 15 fur elise, 16 ode to joy, 17 reveille, ... 29 random, 30 jingle bells, 31 deck the halls, 32 merry christmas, 33 silent night, 34 joy to the world, 35 auld lang syne
+  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris, 12 fox, 13 mission impossible, 14 indiana jones, 15 fur elise, 16 ode to joy, 17 reveille, ... 29 random, 30 jingle bells, 31 deck the halls, 32 merry christmas, 33 silent night, 34 joy to the world, 35 auld lang syne, 36 charge, 37 imperial march, 38 jaws, 39 pink panther, 40 zelda secret, 41 happy birthday, 42 doorbell
   CFG_STRIKE_COUNT: 0,  // 0 = strike the current hour
   CFG_DAYS: 0           // 0 = every day, 1 = weekdays only, 2 = weekends only
 };
@@ -116,6 +116,7 @@ function buildPage(cfg) {
             '<option value="1"' + sel(cfg.CFG_STYLE, 1) + '>Westminster</option>' +
             '<option value="2"' + sel(cfg.CFG_STYLE, 2) + '>Cuckoo</option>' +
             '<option value="3"' + sel(cfg.CFG_STYLE, 3) + '>Hour strikes</option>' +
+            '<option value="42"' + sel(cfg.CFG_STYLE, 42) + '>Doorbell</option>' +
           '</optgroup>' +
           '<optgroup label="Classical">' +
             '<option value="15"' + sel(cfg.CFG_STYLE, 15) + '>Für Elise</option>' +
@@ -131,17 +132,19 @@ function buildPage(cfg) {
             '<option value="26"' + sel(cfg.CFG_STYLE, 26) + '>Habanera (Carmen)</option>' +
             '<option value="27"' + sel(cfg.CFG_STYLE, 27) + '>Sugar Plum Fairy</option>' +
           '</optgroup>' +
-          '<optgroup label="Holidays">' +
+          '<optgroup label="Holidays &amp; Occasions">' +
             '<option value="30"' + sel(cfg.CFG_STYLE, 30) + '>Jingle Bells</option>' +
             '<option value="31"' + sel(cfg.CFG_STYLE, 31) + '>Deck the Halls</option>' +
             '<option value="32"' + sel(cfg.CFG_STYLE, 32) + '>We Wish You a Merry Christmas</option>' +
             '<option value="33"' + sel(cfg.CFG_STYLE, 33) + '>Silent Night</option>' +
             '<option value="34"' + sel(cfg.CFG_STYLE, 34) + '>Joy to the World</option>' +
             '<option value="35"' + sel(cfg.CFG_STYLE, 35) + '>Auld Lang Syne</option>' +
+            '<option value="41"' + sel(cfg.CFG_STYLE, 41) + '>Happy Birthday</option>' +
           '</optgroup>' +
           '<optgroup label="Bugle Calls">' +
             '<option value="17"' + sel(cfg.CFG_STYLE, 17) + '>Reveille</option>' +
             '<option value="28"' + sel(cfg.CFG_STYLE, 28) + '>First Call (Call to the Post)</option>' +
+            '<option value="36"' + sel(cfg.CFG_STYLE, 36) + '>Charge!</option>' +
           '</optgroup>' +
           '<optgroup label="Movies &amp; TV">' +
             '<option value="5"' + sel(cfg.CFG_STYLE, 5) + '>Star Wars</option>' +
@@ -151,11 +154,15 @@ function buildPage(cfg) {
             '<option value="7"' + sel(cfg.CFG_STYLE, 7) + '>X-Files</option>' +
             '<option value="8"' + sel(cfg.CFG_STYLE, 8) + '>Batman</option>' +
             '<option value="6"' + sel(cfg.CFG_STYLE, 6) + '>SpongeBob</option>' +
+            '<option value="37"' + sel(cfg.CFG_STYLE, 37) + '>Imperial March</option>' +
+            '<option value="38"' + sel(cfg.CFG_STYLE, 38) + '>Jaws</option>' +
+            '<option value="39"' + sel(cfg.CFG_STYLE, 39) + '>Pink Panther</option>' +
           '</optgroup>' +
           '<optgroup label="Games &amp; Retro">' +
             '<option value="4"' + sel(cfg.CFG_STYLE, 4) + '>Mario</option>' +
             '<option value="11"' + sel(cfg.CFG_STYLE, 11) + '>Tetris</option>' +
             '<option value="10"' + sel(cfg.CFG_STYLE, 10) + '>Nokia tune</option>' +
+            '<option value="40"' + sel(cfg.CFG_STYLE, 40) + '>Zelda secret jingle</option>' +
           '</optgroup>' +
         '</select></div>' +
       '<div class="row"><label for="strike">Strike count</label>' +

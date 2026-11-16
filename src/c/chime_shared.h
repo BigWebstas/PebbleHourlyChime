@@ -66,6 +66,13 @@ typedef enum {
   HC_STYLE_SILENT_NIGHT       = 33, /* Silent Night opening verse. */
   HC_STYLE_JOY_TO_THE_WORLD   = 34, /* Joy to the World opening line. */
   HC_STYLE_AULD_LANG_SYNE     = 35, /* Auld Lang Syne (New Year's Eve). */
+  HC_STYLE_CHARGE             = 36, /* Cavalry "Charge!" bugle fanfare. */
+  HC_STYLE_IMPERIAL_MARCH     = 37, /* Imperial March (Darth Vader's theme). */
+  HC_STYLE_JAWS               = 38, /* Jaws two-note ostinato. */
+  HC_STYLE_PINK_PANTHER       = 39, /* The Pink Panther theme. */
+  HC_STYLE_ZELDA_SECRET       = 40, /* Zelda "secret found" jingle. */
+  HC_STYLE_HAPPY_BIRTHDAY     = 41, /* Happy Birthday to You. */
+  HC_STYLE_DOORBELL           = 42, /* Two-tone ding-dong doorbell. */
   HC_STYLE_COUNT
 } HcStyle;
 
