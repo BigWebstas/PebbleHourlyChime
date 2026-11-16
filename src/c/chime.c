@@ -13,7 +13,12 @@ static HcStyle hc_resolve_style(HcStyle style) {
     srand((unsigned int)(sec ^ ((uint32_t)ms << 16)));
     s_seeded = true;
   }
-  return (HcStyle)(rand() % HC_STYLE_RANDOM);
+  /* Pick any style except RANDOM itself (it sits mid-enum to keep saved IDs stable). */
+  int pick = rand() % (HC_STYLE_COUNT - 1);
+  if (pick >= HC_STYLE_RANDOM) {
+    pick++;
+  }
+  return (HcStyle)pick;
 }
 
 /* --- vibration ---------------------------------------------------------- */
@@ -683,6 +688,199 @@ static bool hc_play_sound(const HcSettings *s, HcStyle style, int strikes) {
         { 72, SpeakerWaveformSquare, 160, 0, 0 },  /* C5 */
         { 67, SpeakerWaveformSquare, 160, 0, 0 },  /* G4 */
         { 72, SpeakerWaveformSquare, 450, 0, 0 },  /* C5 */
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_JINGLE_BELLS: {
+      /* Jingle Bells chorus (public domain), in C. */
+      static const SpeakerNote notes[] = {
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 330, 0, 0 },
+        { 74, SpeakerWaveformSquare, 110, 0, 0 },
+        { 76, SpeakerWaveformSquare, 660, 0, 0 },
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 77, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 77, SpeakerWaveformSquare, 110, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 660, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_DECK_THE_HALLS: {
+      /* Deck the Halls (traditional Welsh), in C. */
+      static const SpeakerNote notes[] = {
+        { 79, SpeakerWaveformSquare, 330, 0, 0 },
+        { 77, SpeakerWaveformSquare, 110, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 330, 0, 0 },
+        { 77, SpeakerWaveformSquare, 110, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        { 79, SpeakerWaveformSquare, 330, 0, 0 },
+        { 81, SpeakerWaveformSquare, 110, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        { 77, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 660, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_MERRY_CHRISTMAS: {
+      /* We Wish You a Merry Christmas (traditional English), in C. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },
+        { 74, SpeakerWaveformSquare, 110, 0, 0 },
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },
+        { 71, SpeakerWaveformSquare, 110, 0, 0 },
+        { 69, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 69, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 69, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 74, SpeakerWaveformSquare, 110, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },
+        { 74, SpeakerWaveformSquare, 110, 0, 0 },
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },
+        { 71, SpeakerWaveformSquare, 220, 0, 0 },
+        { 67, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },
+        { 77, SpeakerWaveformSquare, 110, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },
+        { 74, SpeakerWaveformSquare, 110, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        { 69, SpeakerWaveformSquare, 220, 0, 0 },
+        { 67, SpeakerWaveformSquare, 110, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 67, SpeakerWaveformSquare, 110, 0, 0 },
+        { 69, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 71, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 660, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_SILENT_NIGHT: {
+      /* Silent Night (Gruber, 1818) opening verse, in C. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 330, 0, 0 },
+        { 69, SpeakerWaveformSquare, 110, 0, 0 },
+        { 67, SpeakerWaveformSquare, 220, 0, 0 },
+        { 64, SpeakerWaveformSquare, 660, 0, 0 },
+        { 67, SpeakerWaveformSquare, 330, 0, 0 },
+        { 69, SpeakerWaveformSquare, 110, 0, 0 },
+        { 67, SpeakerWaveformSquare, 220, 0, 0 },
+        { 64, SpeakerWaveformSquare, 660, 0, 0 },
+        { 74, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 71, SpeakerWaveformSquare, 660, 0, 0 },
+        { 72, SpeakerWaveformSquare, 440, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        { 67, SpeakerWaveformSquare, 880, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_JOY_TO_THE_WORLD: {
+      /* Joy to the World (Handel/Mason) opening line, in C. */
+      static const SpeakerNote notes[] = {
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        { 71, SpeakerWaveformSquare, 330, 0, 0 },
+        { 69, SpeakerWaveformSquare, 110, 0, 0 },
+        { 67, SpeakerWaveformSquare, 550, 0, 0 },
+        { 65, SpeakerWaveformSquare, 220, 0, 0 },
+        { 64, SpeakerWaveformSquare, 220, 0, 0 },
+        { 62, SpeakerWaveformSquare, 330, 0, 0 },
+        { 60, SpeakerWaveformSquare, 550, 0, 0 },
+        { 67, SpeakerWaveformSquare, 220, 0, 0 },
+        { 69, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 69, SpeakerWaveformSquare, 110, 0, 0 },
+        { 71, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 71, SpeakerWaveformSquare, 110, 0, 0 },
+        { 72, SpeakerWaveformSquare, 660, 0, 0 },
+      };
+      return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
+    }
+
+    case HC_STYLE_AULD_LANG_SYNE: {
+      /* Auld Lang Syne (traditional Scots) opening line, in C. */
+      static const SpeakerNote notes[] = {
+        { 67, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 330, 0, 0 },
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 72, SpeakerWaveformSquare, 110, 0, 0 },
+        { 76, SpeakerWaveformSquare, 220, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        { 81, SpeakerWaveformSquare, 660, 0, 0 },
+        { 79, SpeakerWaveformSquare, 220, 0, 0 },
+        { 76, SpeakerWaveformSquare, 330, 0, 0 },
+        {  0, SpeakerWaveformSine,    20, 0, 0 },
+        { 76, SpeakerWaveformSquare, 110, 0, 0 },
+        { 72, SpeakerWaveformSquare, 220, 0, 0 },
+        { 74, SpeakerWaveformSquare, 220, 0, 0 },
+        { 72, SpeakerWaveformSquare, 660, 0, 0 },
       };
       return speaker_play_notes(notes, sizeof(notes) / sizeof(notes[0]), vol);
     }

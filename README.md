@@ -32,10 +32,11 @@ launching the app to chime once and exit. Two backends, chosen on the config pag
 
 ## Chime styles
 
-29 built-in chime melodies plus a **Random** mode that picks a different chime each time:
+35 built-in chime melodies plus a **Random** mode that picks a different chime each time:
 
 - **Clocks & signals** — Single beep, Casio beep (F-91W hourly signal), Westminster (first phrase of the Quarters), Cuckoo, Hour strikes (fixed count or the current 12-hour hour)
 - **Classical** — Für Elise (Beethoven), Ode to Joy (Beethoven's 9th), Beethoven's 5th ("Fate" motif), Eine kleine Nachtmusik (Mozart), William Tell Overture (Rossini), Toccata and Fugue in D minor (Bach), In the Hall of the Mountain King (Grieg), Ride of the Valkyries (Wagner), Vivaldi's Spring (*The Four Seasons*), Toreador Song (*Carmen*, Bizet), Habanera (*Carmen*, Bizet), Dance of the Sugar Plum Fairy (*The Nutcracker*, Tchaikovsky)
+- **Holidays** — Jingle Bells, Deck the Halls, We Wish You a Merry Christmas, Silent Night, Joy to the World, Auld Lang Syne (New Year's Eve)
 - **Bugle calls** — Reveille, First Call (Call to the Post)
 - **Movies & TV** — Star Wars, 20th Century Fox fanfare, Indiana Jones (The Raiders March), Mission: Impossible, X-Files, Batman (1966 TV theme), SpongeBob
 - **Games & retro** — Mario (Super Mario Bros. overworld), Tetris (Korobeiniki), Nokia tune ("Gran Vals")

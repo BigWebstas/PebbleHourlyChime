@@ -59,6 +59,13 @@ typedef enum {
   HC_STYLE_SUGAR_PLUM         = 27, /* Tchaikovsky's Dance of the Sugar Plum Fairy. */
   HC_STYLE_FIRST_CALL         = 28, /* Traditional "Call to the Post" bugle fanfare. */
   HC_STYLE_RANDOM             = 29, /* Pick a random chime style each time. */
+  /* Holiday chimes. Appended after RANDOM so saved settings keep their IDs. */
+  HC_STYLE_JINGLE_BELLS       = 30, /* Jingle Bells chorus. */
+  HC_STYLE_DECK_THE_HALLS     = 31, /* Deck the Halls opening verse. */
+  HC_STYLE_MERRY_CHRISTMAS    = 32, /* We Wish You a Merry Christmas. */
+  HC_STYLE_SILENT_NIGHT       = 33, /* Silent Night opening verse. */
+  HC_STYLE_JOY_TO_THE_WORLD   = 34, /* Joy to the World opening line. */
+  HC_STYLE_AULD_LANG_SYNE     = 35, /* Auld Lang Syne (New Year's Eve). */
   HC_STYLE_COUNT
 } HcStyle;
 

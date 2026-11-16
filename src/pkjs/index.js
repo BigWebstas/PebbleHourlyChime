@@ -14,7 +14,7 @@ var DEFAULTS = {
   CFG_VOLUME: 70,
   CFG_START_HOUR: 8,
   CFG_END_HOUR: 22,
-  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris, 12 fox, 13 mission impossible, 14 indiana jones, 15 fur elise, 16 ode to joy, 17 reveille
+  CFG_STYLE: 1,         // 0 beep, 1 westminster, 2 cuckoo, 3 strike, 4 mario, 5 starwars, 6 spongebob, 7 xfiles, 8 batman, 9 casio, 10 nokia, 11 tetris, 12 fox, 13 mission impossible, 14 indiana jones, 15 fur elise, 16 ode to joy, 17 reveille, ... 29 random, 30 jingle bells, 31 deck the halls, 32 merry christmas, 33 silent night, 34 joy to the world, 35 auld lang syne
   CFG_STRIKE_COUNT: 0,  // 0 = strike the current hour
   CFG_DAYS: 0           // 0 = every day, 1 = weekdays only, 2 = weekends only
 };
@@ -130,6 +130,14 @@ function buildPage(cfg) {
             '<option value="25"' + sel(cfg.CFG_STYLE, 25) + '>Toreador Song (Carmen)</option>' +
             '<option value="26"' + sel(cfg.CFG_STYLE, 26) + '>Habanera (Carmen)</option>' +
             '<option value="27"' + sel(cfg.CFG_STYLE, 27) + '>Sugar Plum Fairy</option>' +
+          '</optgroup>' +
+          '<optgroup label="Holidays">' +
+            '<option value="30"' + sel(cfg.CFG_STYLE, 30) + '>Jingle Bells</option>' +
+            '<option value="31"' + sel(cfg.CFG_STYLE, 31) + '>Deck the Halls</option>' +
+            '<option value="32"' + sel(cfg.CFG_STYLE, 32) + '>We Wish You a Merry Christmas</option>' +
+            '<option value="33"' + sel(cfg.CFG_STYLE, 33) + '>Silent Night</option>' +
+            '<option value="34"' + sel(cfg.CFG_STYLE, 34) + '>Joy to the World</option>' +
+            '<option value="35"' + sel(cfg.CFG_STYLE, 35) + '>Auld Lang Syne</option>' +
           '</optgroup>' +
           '<optgroup label="Bugle Calls">' +
             '<option value="17"' + sel(cfg.CFG_STYLE, 17) + '>Reveille</option>' +
